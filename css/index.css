@@ -1,0 +1,222 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: 0.15s ease-in-out;
+  transition: 0.15s ease-in-out;
+}
+
+html {
+  font-family: system, -apple-system, BlinkMacSystemFont, "Segoe UI", "Segoe WP", Roboto, Ubuntu, Oxygen, Cantarell, "Fira Sans", "Helvetica Neue", Helvetica, "Lucida Grande", "Droid Sans", Tahoma, "Microsoft Sans Serif", sans-serif;
+  font-size: 16px;
+  font: Helvetica, sans-serif;
+  color: #051f34;
+  background-color: #f4f5f5;
+}
+
+main {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+a {
+  text-decoration: none;
+  color: #01a9c1;
+}
+
+a:hover,
+a:active {
+  color: #027495;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  outline-color: #01a9c1;
+}
+
+input[type="file"] {
+  border: none;
+  display: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  height: auto;
+  border: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 100vh;
+}
+
+.form__wrap .form-block, .form__wrap .form-block-sm {
+  margin-bottom: 20px;
+}
+
+.form__wrap .form-block:last-of-type, .form__wrap .form-block-sm:last-of-type {
+  margin-bottom: 0;
+}
+
+.form-block, .form-block-sm {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.form-block label, .form-block-sm label {
+  color: #8b8b8b;
+  margin-bottom: 5px;
+}
+
+.form-block input, .form-block-sm input,
+.form-block textarea,
+.form-block-sm textarea,
+.file-upload {
+  background-color: inherit;
+  width: 100%;
+  font-size: 16px;
+  color: inherit;
+  padding: 0 13px;
+  border: 1px solid #d3d3d3;
+  border-radius: 8px;
+  line-height: 3;
+}
+
+.form-block input:hover, .form-block-sm input:hover,
+.form-block textarea:hover,
+.form-block-sm textarea:hover,
+.form-block .file-upload:hover,
+.form-block-sm .file-upload:hover {
+  border: 1px solid #bababa;
+}
+
+.file-upload {
+  cursor: pointer;
+}
+
+.form-block input:focus, .form-block-sm input:focus {
+  outline: auto #01a9c1;
+}
+
+.form-block__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.form-block-sm input,
+.form-block-sm textarea,
+.form-block-sm .file-upload {
+  line-height: 2;
+}
+
+.form-block-sm label {
+  color: #051f34;
+  font-weight: 700;
+}
+
+.btn-main-lg, .btn-main-sm {
+  padding: 15px 25px;
+  border-radius: 8px;
+  background-color: #01a9c1;
+  border: 2px solid #01a9c1;
+  color: #f4f5f5;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.btn-main-lg:hover, .btn-main-sm:hover {
+  background-color: #027495;
+  border: 2px solid #027495;
+}
+
+.btn-main-sm {
+  padding: 3px 10px 5px;
+  font-size: 14px;
+}
+
+@media only screen and (min-width: 961px) {
+  .hide-desktop {
+    display: none !important;
+  }
+  .form-block__container {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .form-block__container > :nth-child(1) {
+    -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+            order: 0;
+    margin: 0;
+    -webkit-box-flex: 0.5;
+        -ms-flex: 0.5;
+            flex: 0.5;
+    margin-right: 20px;
+  }
+  .form-block__container > :nth-child(2) {
+    -webkit-box-flex: 0.5;
+        -ms-flex: 0.5;
+            flex: 0.5;
+  }
+  .btn__container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .btn__container button {
+    margin-right: 20px;
+  }
+  .btn__container button:last-of-type {
+    margin-right: 0;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+/*# sourceMappingURL=index.css.map */

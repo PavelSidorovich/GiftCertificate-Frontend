@@ -1,0 +1,203 @@
+@import "globals";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: 0.15s ease-in-out;
+}
+
+html {
+  font-family: system, -apple-system, BlinkMacSystemFont, "Segoe UI", "Segoe WP",
+    Roboto, Ubuntu, Oxygen, Cantarell, "Fira Sans", "Helvetica Neue", Helvetica,
+    "Lucida Grande", "Droid Sans", Tahoma, "Microsoft Sans Serif", sans-serif;
+  font-size: 16px;
+  font: $font-stack;
+  color: $color-blue-4;
+  background-color: $color-white;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  text-decoration: none;
+  color: $color-blue-2;
+}
+
+a:hover,
+a:active {
+  color: $color-blue-3;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  outline-color: $color-blue-2;
+}
+
+input[type="file"] {
+  border: none;
+  display: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  height: auto;
+  border: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.form__wrap .form-block {
+  margin-bottom: 20px;
+}
+
+.form__wrap .form-block:last-of-type {
+  margin-bottom: 0;
+}
+
+.form-block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-block label {
+  color: $color-dark-grey;
+  margin-bottom: 5px;
+}
+
+.form-block input,
+.form-block textarea,
+.file-upload {
+  background-color: inherit;
+  width: 100%;
+  font-size: 16px;
+  color: inherit;
+  padding: 0 13px;
+  border: 1px solid $color-light-grey;
+  border-radius: 8px;
+  line-height: 3;
+}
+
+.form-block input:hover,
+.form-block textarea:hover,
+.form-block .file-upload:hover {
+  border: 1px solid $color-grey;
+}
+
+.file-upload {
+  cursor: pointer;
+}
+
+.form-block input:focus {
+  outline: auto $color-blue-2;
+}
+
+.form-block__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-block-sm {
+  @extend .form-block;
+}
+
+.form-block-sm input,
+.form-block-sm textarea,
+.form-block-sm .file-upload {
+  line-height: 2;
+}
+
+.form-block-sm label {
+  color: $color-blue-4;
+  font-weight: 700;
+}
+
+.btn-main-lg {
+  padding: 15px 25px;
+  border-radius: 8px;
+  background-color: $color-blue-2;
+  border: 2px solid $color-blue-2;
+  color: $color-white;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.btn-main-lg:hover {
+  background-color: $color-blue-3;
+  border: 2px solid $color-blue-3;
+}
+
+.btn-main-sm {
+  @extend .btn-main-lg;
+  padding: 3px 10px 5px;
+  font-size: 14px;
+}
+
+@media only screen and (min-width: 961px) {
+  .hide-desktop {
+    display: none !important;
+  }
+
+  .form-block__container {
+    flex-direction: row;
+  }
+
+  .form-block__container > :nth-child(1) {
+    order: 0;
+    margin: 0;
+    flex: 0.5;
+    margin-right: 20px;
+  }
+
+  .form-block__container > :nth-child(2) {
+    flex: 0.5;
+  }
+
+  .btn__container {
+    display: flex;
+  }
+
+  .btn__container button {
+    margin-right: 20px;
+  }
+
+  .btn__container button:last-of-type {
+    margin-right: 0;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}

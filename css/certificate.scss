@@ -1,0 +1,45 @@
+@import "common";
+@import "globals";
+
+.certificate-page {
+  @extend %page;
+  @extend %page__element;
+}
+
+.certificate-page__title {
+  @extend %page__title;
+}
+
+.save-btn {
+  @extend %block-btn;
+}
+
+.certificate-img {
+  border-radius: 8px 8px 0 0;
+}
+
+.certificate-img-label {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.cancel-btn {
+  @extend %block-btn;
+  background-color: transparent;
+  color: $color-blue-2;
+  font-weight: unset;
+  border: 2px solid $color-blue-2;
+}
+
+.cancel-btn:hover {
+  background-color: transparent;
+  border: 2px solid $color-blue-3;
+  color: $color-blue-3;
+}
+
+@media only screen and (min-width: 961px) {
+  .certificate-page {
+    @extend %shadow-box;
+    width: 900px;
+  }
+}
