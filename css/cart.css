@@ -219,6 +219,7 @@
     padding: 24px;
   }
   .cart-page {
+    margin: 2rem;
     position: relative;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
