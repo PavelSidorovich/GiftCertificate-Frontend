@@ -15,6 +15,7 @@ html {
   font: $font-stack;
   color: $color-blue-4;
   background-color: $color-white;
+  scroll-behavior: smooth;
 }
 
 main {

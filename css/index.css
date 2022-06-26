@@ -13,6 +13,7 @@ html {
   font: Helvetica, sans-serif;
   color: #051f34;
   background-color: #f4f5f5;
+  scroll-behavior: smooth;
 }
 
 main {
