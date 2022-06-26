@@ -122,7 +122,6 @@ function towerHanoi(disks) {
     if (n > 0) {
       move(n - 1, source, auxiliary, target);
       target.push(source.pop());
-      console.log(rodA + "      " + rodB + "      " + rodC);
       move(n - 1, auxiliary, target, source);
     }
   }
@@ -184,8 +183,6 @@ function gather(str) {
 
         for (let i = 0; i <= indexes.length && i <= letters.length; i++) {
           result[indexes[i]] = letters[i];
-
-          console.log(letters);
         }
 
         return result.join("");
