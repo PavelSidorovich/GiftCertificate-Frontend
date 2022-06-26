@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/home.css" />
     <link rel="stylesheet" href="/css/footer.css" />
     <title>CertBY</title>
-    <script type="module" src="/client/js/certificates-filter.js"></script>
+    <script src="/client/js/carousel.js"></script>
   </head>
   <body>
     <div id="top" class="wrapper">
@@ -103,44 +103,5 @@
       </main>
       <%- include('partials/footer.ejs')%>
     </div>
-    <script>
-      const slideBullets = document.querySelectorAll(
-        ".promo__pagination-bullet"
-      );
-      let curSlide = 0;
-
-      const changeSlide = function (bullet) {
-        const list = document.querySelector(".promo__list");
-
-        slideBullets.forEach((bullet) => {
-          bullet.classList.remove("promo__pagination-bullet--active");
-        });
-        bullet.classList.add("promo__pagination-bullet--active");
-
-        list.style.transform = `translateX(${-100 * curSlide}%)`;
-      };
-
-      slideBullets.forEach((bullet, index) => {
-        bullet.addEventListener("click", function () {
-          curSlide = bullet.getAttribute("slide-number");
-          changeSlide(bullet, curSlide);
-        });
-      });
-
-      const slideFunc = function () {
-        curSlide == 1 ? curSlide-- : curSlide++;
-        const bullet = document.querySelector(
-          `.promo__pagination .promo__pagination-bullet:nth-child(${
-            curSlide + 1
-          })`
-        );
-
-        changeSlide(bullet, curSlide);
-      };
-
-      window.setInterval(function () {
-        slideFunc();
-      }, 5000);
-    </script>
   </body>
 </html>
