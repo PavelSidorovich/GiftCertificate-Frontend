@@ -186,11 +186,9 @@
 
 .promo__item {
   display: inline-block;
-}
-
-.promo__item img {
   border-radius: 12px;
   overflow: hidden;
+  max-height: 130px;
 }
 
 .promo__item--active {
@@ -222,6 +220,19 @@
   height: 8px;
   border: 1px solid $color-blue-2;
   background-color: $color-blue-2;
+}
+
+.no-items-title {
+  margin: 0 16px;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.to-top-btn {
+  @include icon(url("/images/up_24dp.svg"), 40px, $filter-blue);
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
 }
 
 @media only screen and (min-width: 961px) {
@@ -310,6 +321,13 @@
 
   .promo__item {
     margin-right: 16px;
+    cursor: pointer;
+    max-height: 190px;
+    min-width: calc(50% - 8px);
+  }
+
+  .promo__item:nth-child(even) {
+    margin-right: 0;
   }
 
   .promo__item:last-of-type {

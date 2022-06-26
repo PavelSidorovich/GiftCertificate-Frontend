@@ -262,11 +262,9 @@
 
 .promo__item, .promo__item--active {
   display: inline-block;
-}
-
-.promo__item img, .promo__item--active img {
   border-radius: 12px;
   overflow: hidden;
+  max-height: 130px;
 }
 
 .promo__item--active {
@@ -301,6 +299,25 @@
   height: 8px;
   border: 1px solid #01a9c1;
   background-color: #01a9c1;
+}
+
+.no-items-title {
+  margin: 0 16px;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.to-top-btn {
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-size: 40px;
+  background-image: url("/images/up_24dp.svg");
+  -webkit-filter: invert(49%) sepia(41%) saturate(4267%) hue-rotate(155deg) brightness(97%) contrast(99%);
+          filter: invert(49%) sepia(41%) saturate(4267%) hue-rotate(155deg) brightness(97%) contrast(99%);
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
 }
 
 @media only screen and (min-width: 961px) {
@@ -386,6 +403,12 @@
   }
   .promo__item, .promo__item--active {
     margin-right: 16px;
+    cursor: pointer;
+    max-height: 190px;
+    min-width: calc(50% - 8px);
+  }
+  .promo__item:nth-child(even), .promo__item--active:nth-child(even) {
+    margin-right: 0;
   }
   .promo__item:last-of-type, .promo__item--active:last-of-type {
     margin-right: 0;
