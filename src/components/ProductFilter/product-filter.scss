@@ -1,0 +1,81 @@
+@import "../../common";
+@import "../../globals";
+
+.catalog-page__filter {
+  z-index: 20;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background-color: $color-white;
+  overflow-y: auto;
+}
+
+.filter__header {
+  padding: 16px;
+  text-align: center;
+  border-bottom: 1px solid $color-lightest-grey;
+}
+
+.filter__content {
+  @extend %page__element;
+  flex-grow: 1;
+  flex: 1;
+  margin: 16px 0;
+}
+
+.filter__title {
+  font-size: 18px;
+}
+
+.filter__bottom {
+  @extend %page__element;
+  position: fixed;
+  bottom: 45px;
+  width: 100%;
+  padding-bottom: 16px;
+  box-shadow: 0 -20px 15px rgba(0, 0, 0, 0.05);
+  background-color: $color-white;
+}
+
+.filter-btn--apply {
+  @extend %block-btn;
+}
+
+.filter-btn--reset {
+  @extend %block-btn;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $color-dark-grey;
+  vertical-align: center;
+}
+
+.filter-btn--reset::before {
+  content: "";
+  @include icon(
+    url("../../assets/images/close_24dp.svg"),
+    20px,
+    $filter-grey-dark
+  );
+}
+
+@media only screen and (min-width: 961px) {
+  .catalog-page__filter {
+    width: 256px;
+    margin-right: 44px;
+    z-index: unset;
+    position: static;
+    overflow-y: unset;
+  }
+
+  .filter__bottom {
+    position: sticky;
+    bottom: 0;
+    box-shadow: none;
+    border-top: 1px solid $color-lightest-grey;
+  }
+}

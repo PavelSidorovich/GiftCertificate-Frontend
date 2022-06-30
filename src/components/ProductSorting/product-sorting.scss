@@ -1,0 +1,112 @@
+@import "../../common";
+@import "../../globals";
+
+.sorter-mobile {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.sorter-mobile__title {
+  font-size: 0;
+}
+
+.select-filter {
+  position: relative;
+  width: 150px;
+  text-align: center;
+}
+
+.select-filter__value {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 13px;
+}
+
+.select-filter__value::after {
+  content: "";
+  border-top: 5px solid $color-blue-4;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  margin-left: 5px;
+  display: inline-block;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.select-filter__list {
+  z-index: 10;
+  position: absolute;
+  top: 25px;
+  padding: 4px 0;
+  background-color: $color-white;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.select-filter__item {
+  padding: 8px 12px;
+}
+
+.sorter-mobile__filter {
+  @include icon(url("../../assets/images/tune_24dp.svg"), 24px, $filter-blue);
+}
+
+.catalog-page__filter--open {
+  right: 0 !important;
+  transition: right 0.3s ease-in-out;
+}
+
+.close-icon {
+  @include icon(
+    url("../../assets/images/close_24dp.svg"),
+    24px,
+    $filter-grey-dark
+  );
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+@media only screen and (min-width: 961px) {
+  .sorter-mobile {
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .sorter-mobile__title {
+    font-size: unset;
+    margin-right: 20px;
+  }
+
+  .select-filter {
+    width: fit-content;
+  }
+
+  .hidden {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .select-filter__list {
+    position: static;
+    display: flex;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .select-filter__item {
+    padding: 0;
+    border-bottom: 1px dashed $color-dark-grey;
+    margin-right: 20px;
+  }
+
+  .active-filter {
+    color: $color-blue-2;
+    border-bottom: 1px dashed $color-blue-2;
+  }
+}

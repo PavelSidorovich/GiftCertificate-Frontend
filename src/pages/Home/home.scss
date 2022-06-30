@@ -1,0 +1,45 @@
+@import "../../common";
+@import "../../globals";
+
+.catalog-page {
+  @extend %page;
+  @extend %page__element;
+}
+
+.catalog-page__content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.to-top-btn {
+  width: 40px;
+  height: 40px;
+  background-color: $color-blue-2;
+  border-radius: 50%;
+  position: fixed;
+  right: 24px;
+  bottom: 60px;
+}
+
+.to-top-btn span {
+  @include icon(url("../../assets/images/up_24dp.svg"), 40px, $filter-white);
+}
+
+@media only screen and (min-width: 961px) {
+  .catalog-page {
+    display: flex;
+    position: relative;
+  }
+
+  .catalog-page__main {
+    width: calc(100% - 300px);
+  }
+
+  .to-top-btn {
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    bottom: 24px;
+  }
+}

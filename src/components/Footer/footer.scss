@@ -1,4 +1,4 @@
-@import "globals";
+@import "../../globals";
 
 .footer {
   color: $color-white;
@@ -45,22 +45,22 @@
 
 .footer .icon-vk {
   @extend %footer__icon;
-  background-image: url("/images/vkontakte_24dp.svg");
+  background-image: url("../../assets/images/vkontakte_24dp.svg");
 }
 
 .footer .icon-tg {
   @extend %footer__icon;
-  background-image: url("/images/telegram_24dp.svg");
+  background-image: url("../../assets/images/telegram_24dp.svg");
 }
 
 .footer .icon-inst {
   @extend %footer__icon;
-  background-image: url("/images/instagram_24dp.svg");
+  background-image: url("../../assets/images/instagram_24dp.svg");
 }
 
 .footer .icon-li {
   @extend %footer__icon;
-  background-image: url("/images/linkedin_24dp.svg");
+  background-image: url("../../assets/images/linkedin_24dp.svg");
 }
 
 .footer__add-info {

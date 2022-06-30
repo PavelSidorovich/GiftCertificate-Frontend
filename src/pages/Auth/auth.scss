@@ -1,4 +1,5 @@
-@import "common";
+@import "../../common";
+@import "../../globals";
 
 .sign-in-page {
   @extend %page;
@@ -16,6 +17,12 @@
 .register-link {
   margin: 20px auto;
   text-align: center;
+}
+
+.login__error-msg {
+  color: $color-danger;
+  text-align: center;
+  font-weight: 700;
 }
 
 @media only screen and (min-width: 961px) {

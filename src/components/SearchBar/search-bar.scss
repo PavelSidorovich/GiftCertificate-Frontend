@@ -1,0 +1,56 @@
+@import "../../globals";
+@import "../../common";
+
+.header__search-catalog-pc {
+  display: flex;
+  width: 100%;
+  margin: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+.search-catalog__input {
+  width: 100%;
+  color: $color-white;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 56px;
+  padding: 16px 44px;
+  font-size: 18px;
+  outline: none;
+  margin-right: 10px;
+}
+
+.search-catalog__input:focus {
+  color: $color-primary;
+  background-color: $color-white !important;
+}
+
+.search-catalog__input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.search-catalog__input:focus::placeholder {
+  color: $color-light-grey;
+}
+
+.search-catalog__input:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.search-catalog__cancel {
+  color: $color-white;
+}
+
+@media only screen and (min-width: 961px) {
+  .header__search-catalog-pc {
+    flex-grow: 1;
+    margin: 0 100px;
+  }
+
+  .search-catalog__input {
+    margin-right: 0;
+  }
+}
