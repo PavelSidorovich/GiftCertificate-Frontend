@@ -18,6 +18,7 @@ $color-lightest-grey: #e8e8e8;
 $color-light-grey: #d3d3d3;
 $color-grey: #bababa;
 $color-dark-grey: #8b8b8b;
+$color-pink: #f1989a;
 
 $filter-white: invert(95%) sepia(52%) saturate(1860%) hue-rotate(177deg)
   brightness(123%) contrast(92%);
@@ -31,3 +32,7 @@ $filter-grey: invert(83%) sepia(6%) saturate(0%) hue-rotate(198deg)
   brightness(90%) contrast(90%);
 $filter-grey-dark: invert(51%) sepia(28%) saturate(0%) hue-rotate(233deg)
   brightness(101%) contrast(91%);
+$filter-danger: invert(53%) sepia(88%) saturate(5907%) hue-rotate(334deg)
+  brightness(88%) contrast(97%);
+$filter-success: invert(48%) sepia(63%) saturate(694%) hue-rotate(83deg)
+  brightness(96%) contrast(74%);

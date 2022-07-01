@@ -82,6 +82,13 @@ textarea {
   min-height: 100vh;
 }
 
+.section-header {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
 .form__wrap .form-block, .form__wrap .form-block-sm {
   margin-bottom: 20px;
 }
@@ -136,6 +143,56 @@ textarea {
   outline: auto #01a9c1;
 }
 
+.form-block__input {
+  position: relative;
+  margin-bottom: 2px;
+}
+
+.form-block__input--invalid input {
+  border-color: #dc3545;
+  -webkit-box-shadow: 0 0 0 2px #f1989a;
+          box-shadow: 0 0 0 2px #f1989a;
+}
+
+.form-block__input .invalid-input-icon, .form-block__input .success-input-icon {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+}
+
+.form-block__input .invalid-input-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background-size: 24px;
+  background-image: url("./assets/images/error_24dp.svg");
+  -webkit-filter: invert(53%) sepia(88%) saturate(5907%) hue-rotate(334deg) brightness(88%) contrast(97%);
+          filter: invert(53%) sepia(88%) saturate(5907%) hue-rotate(334deg) brightness(88%) contrast(97%);
+}
+
+.form-block__input .success-input-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background-size: 24px;
+  background-image: url("./assets/images/tick_24dp.svg");
+  -webkit-filter: invert(48%) sepia(63%) saturate(694%) hue-rotate(83deg) brightness(96%) contrast(74%);
+          filter: invert(48%) sepia(63%) saturate(694%) hue-rotate(83deg) brightness(96%) contrast(74%);
+}
+
+.form-block__feedback {
+  padding-left: 15px;
+  font-size: 14px;
+}
+
+.form-block__feedback--invalid {
+  color: #dc3545;
+}
+
+.form-block__feedback--success {
+  color: #28a745;
+}
+
 .form-block__container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -155,6 +212,14 @@ textarea {
 .form-block-sm label {
   color: #051f34;
   font-weight: 700;
+}
+
+.btn-link {
+  display: inline-block;
+}
+
+.btn-link:hover {
+  color: #f4f5f5;
 }
 
 .btn-main-lg, .btn-main-sm {
@@ -178,6 +243,12 @@ textarea {
 }
 
 @media only screen and (min-width: 961px) {
+  .section-header {
+    margin-bottom: 20px;
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+  }
   .hide-desktop {
     display: none !important;
   }

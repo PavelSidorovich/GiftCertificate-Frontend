@@ -9,6 +9,7 @@ const initialState = {
   isLoggedIn: false,
   error: null,
   loginStatus: "idle",
+  signUpStatus: "idle",
   fetchStatus: "idle",
 };
 
@@ -17,6 +18,21 @@ export const login = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await AUTH_CONTEXT.login(credentials);
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      return rejectWithValue(err.response);
+    }
+  }
+);
+
+export const signUp = createAsyncThunk(
+  "auth/signUp",
+  async (values, { rejectWithValue }) => {
+    try {
+      const response = await AUTH_CONTEXT.signUp(values);
       return response.data;
     } catch (err) {
       if (!err.response) {
@@ -53,7 +69,6 @@ const authSlice = createSlice({
       state.email = null;
       state.isAdmin = false;
       state.isLoggedIn = false;
-      state.error = null;
       state.loginStatus = "idle";
       state.fetchStatus = "idle";
     },
@@ -73,6 +88,7 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.loginStatus = "succeeded";
+        state.error = null;
       })
       .addCase(login.rejected, (state, action) => {
         state.loginStatus = "failed";
@@ -87,9 +103,21 @@ const authSlice = createSlice({
       })
       .addCase(fetchAuthenticatedUser.rejected, (state, action) => {
         state.fetchStatus = "failed";
-        state.error = action;
+        state.error = action.payload;
         if (action.payload && action.payload.status === 401) {
           state.error = "Session timed out";
+        }
+      })
+      .addCase(signUp.pending, (state) => {
+        state.signUpStatus = "loading";
+      })
+      .addCase(signUp.fulfilled, (state) => {
+        state.signUpStatus = "succeeded";
+      })
+      .addCase(signUp.rejected, (state, action) => {
+        state.signUpStatus = "failed";
+        if (action.payload && action.payload.status === 409) {
+          state.error = { email: "User with such email already exists" };
         }
       });
   },

@@ -1,4 +1,5 @@
 @import "globals";
+@import "common";
 
 * {
   margin: 0;
@@ -77,6 +78,13 @@ textarea {
   min-height: 100vh;
 }
 
+.section-header {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
 .form__wrap .form-block {
   margin-bottom: 20px;
 }
@@ -123,6 +131,45 @@ textarea {
   outline: auto $color-blue-2;
 }
 
+.form-block__input {
+  position: relative;
+  margin-bottom: 2px;
+}
+
+.form-block__input--invalid input {
+  border-color: $color-danger;
+  box-shadow: 0 0 0 2px $color-pink;
+}
+
+%input-icon {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+}
+
+.form-block__input .invalid-input-icon {
+  @extend %input-icon;
+  @include icon(url("./assets/images/error_24dp.svg"), 24px, $filter-danger);
+}
+
+.form-block__input .success-input-icon {
+  @extend %input-icon;
+  @include icon(url("./assets/images/tick_24dp.svg"), 24px, $filter-success);
+}
+
+.form-block__feedback {
+  padding-left: 15px;
+  font-size: 14px;
+}
+
+.form-block__feedback--invalid {
+  color: $color-danger;
+}
+
+.form-block__feedback--success {
+  color: $color-success;
+}
+
 .form-block__container {
   display: flex;
   flex-direction: column;
@@ -141,6 +188,14 @@ textarea {
 .form-block-sm label {
   color: $color-blue-4;
   font-weight: 700;
+}
+
+.btn-link {
+  display: inline-block;
+}
+
+.btn-link:hover {
+  color: $color-white;
 }
 
 .btn-main-lg {
@@ -165,6 +220,13 @@ textarea {
 }
 
 @media only screen and (min-width: 961px) {
+  .section-header {
+    margin-bottom: 20px;
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+  }
+
   .hide-desktop {
     display: none !important;
   }

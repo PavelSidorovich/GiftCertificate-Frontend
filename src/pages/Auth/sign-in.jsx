@@ -2,12 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  fetchAuthenticatedUser,
-  login,
-  logout,
-  setAuthContext,
-} from "../../redux/slices/authSlice";
+import { login, logout, setAuthContext } from "../../redux/slices/authSlice";
 import "./auth.css";
 
 const SignIn = (props) => {
@@ -33,12 +28,10 @@ const SignIn = (props) => {
   };
 
   useEffect(() => {
-    dispatch(fetchAuthenticatedUser()).then((res) => {
-      if (res.payload && res.payload.status === 401) {
-        dispatch(logout());
-      }
-    });
-  }, [dispatch]);
+    if (loginStatus !== "rejected" && authError) {
+      dispatch(logout());
+    }
+  }, [authError]);
 
   return loginStatus === "succeeded" ? (
     props.history.push("/")
