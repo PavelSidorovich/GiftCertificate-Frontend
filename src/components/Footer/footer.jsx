@@ -62,9 +62,14 @@ const Footer = () => {
           </Link>
         </li>
         <li className="navbar__item">
-          <a href="cart.html" className="navbar__icon--link">
+          <Link
+            to={
+              userId && isLoggedIn ? "/users/" + userId + "/cart" : "/sign-in"
+            }
+            className="navbar__icon--link"
+          >
             <span className="navbar__icon--cart"></span>
-          </a>
+          </Link>
         </li>
         <li className="navbar__item">
           <Link

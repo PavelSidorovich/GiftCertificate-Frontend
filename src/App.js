@@ -1,9 +1,16 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import { Header, Footer, AuthContext, RequireAuth } from "./components";
+import {
+  Header,
+  Footer,
+  AuthContext,
+  RequireAuth,
+  UserPages,
+} from "./components";
 import {
   AccountDetails,
+  Cart,
   Home,
   ProductDetails,
   SignIn,
@@ -24,7 +31,11 @@ export default function App() {
               <Route path="/certificates/:id" component={ProductDetails} />
 
               <RequireAuth>
-                <Route path="/users/:id" component={AccountDetails} />
+                <Route exact path="/users/:id" component={AccountDetails} />
+
+                <UserPages>
+                  <Route path="/users/:id/cart/" component={Cart} />
+                </UserPages>
               </RequireAuth>
             </Switch>
           </main>

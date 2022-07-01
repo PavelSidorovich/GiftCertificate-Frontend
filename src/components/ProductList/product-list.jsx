@@ -1,9 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
+import { editUserCart } from "../../redux/slices/ordersSlice";
+import { selectId } from "../../redux/slices/authSlice";
 import "./product-list.css";
 
 const ProductList = (props) => {
+  const dispatch = useDispatch();
+  const userid = useSelector(selectId);
+  const cartEditStatus = useSelector((state) => state.orders.editStatus);
+
+  const handleToCartButtonClick = (e) => {
+    const certificateId = e.target.getAttribute("aria-describedby");
+
+    dispatch(editUserCart({ userId: userid, itemId: certificateId }));
+  };
+
   const certificates =
     props.certificates &&
     props.certificates.map((certificate) => (
@@ -19,7 +32,13 @@ const ProductList = (props) => {
         </Link>
         <div className="product-card__bottom">
           <p className="product-card__price">{certificate.price} $</p>
-          <button className="btn-main-sm">To cart</button>
+          <button
+            className="btn-main-sm"
+            aria-describedby={certificate.id}
+            onClick={handleToCartButtonClick}
+          >
+            To cart
+          </button>
         </div>
       </div>
     ));

@@ -81,8 +81,10 @@ class CertificateApi {
     return this.init().post(`/users/${userId}/cart`);
   }
 
-  addToUserCart(userId, certificateId) {
-    return this.init().post(`/users/${userId}/cart/${certificateId}`);
+  editUserCart(userId, certificateId, amount) {
+    return this.init().post(`/users/${userId}/cart/${certificateId}`, {
+      amount: amount ? amount : null,
+    });
   }
 
   removeFromUserCart(userId, certificateId) {

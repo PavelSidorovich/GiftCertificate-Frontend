@@ -8,3 +8,6 @@ export { default as ProductFilter } from "./ProductFilter/product-filter";
 export { default as ProductSorting } from "./ProductSorting/product-sorting";
 export { default as Loading } from "./Loading/loading";
 export { default as HomeBanner } from "./HomeBanner/home-banner";
+export { default as UserPages } from "./UserPages/user-pages";
+export { default as CartList } from "./CartList/cart-list";
+export { default as CartSidebar } from "./CartSidebar/cart-sidebar";

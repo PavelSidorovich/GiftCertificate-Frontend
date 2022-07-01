@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Loading } from "../../components";
+import { selectId } from "../../redux/slices/authSlice";
 import { fetchCertificateById } from "../../redux/slices/certificateSlice";
+import { editUserCart } from "../../redux/slices/ordersSlice";
 import "./product-details.css";
 
 const dateOptions = {
@@ -12,12 +14,17 @@ const dateOptions = {
 
 const ProductDetails = (props) => {
   const dispatch = useDispatch();
+  const userid = useSelector(selectId);
   const certificate = useSelector((state) => state.certificates.certificate);
 
   const handleBackClick = () => {
     props.history.action !== "POP"
       ? props.history.goBack()
       : props.history.push("/");
+  };
+
+  const handleToCartButtonClick = () => {
+    dispatch(editUserCart({ userId: userid, itemId: certificate.id }));
   };
 
   const tags = certificate
@@ -45,7 +52,10 @@ const ProductDetails = (props) => {
             <div className="product-page__price">
               <p>{certificate.price} $</p>
             </div>
-            <button className="to-cart-btn btn-main-lg hide-mobile">
+            <button
+              className="to-cart-btn btn-main-lg hide-mobile"
+              onClick={handleToCartButtonClick}
+            >
               To cart
             </button>
           </div>
