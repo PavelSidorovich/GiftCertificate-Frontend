@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./product-list.css";
 
@@ -7,7 +8,7 @@ const ProductList = (props) => {
     props.certificates &&
     props.certificates.map((certificate) => (
       <div key={certificate.id} className="product-card">
-        <a href="product.html">
+        <Link to={"/certificates/" + certificate.id}>
           <img src={certificate.imageUrl} alt="certificate" />
           <div className="product-card__body">
             <p className="product-card__name">{certificate.name}</p>
@@ -15,7 +16,7 @@ const ProductList = (props) => {
               {certificate.description}
             </p>
           </div>
-        </a>
+        </Link>
         <div className="product-card__bottom">
           <p className="product-card__price">{certificate.price} $</p>
           <button className="btn-main-sm">To cart</button>
