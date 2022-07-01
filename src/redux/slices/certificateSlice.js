@@ -2,21 +2,23 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "../../services/api/AppApi";
 
 const initialState = {
+  certificate: null,
   certificates: [],
   totalPages: null,
-  certName: window.localStorage.getItem("filter-name") || null,
-  tagName: window.localStorage.getItem("filter-tag") || null,
-  description: window.localStorage.getItem("filter-description") || null,
+  certName: window.sessionStorage.getItem("filter-name") || null,
+  tagName: window.sessionStorage.getItem("filter-tag") || null,
+  description: window.sessionStorage.getItem("filter-description") || null,
   sortByCreateDate:
-    window.localStorage.getItem("sort-by-create-date") || "DESC",
-  sortByName: window.localStorage.getItem("sort-by-name") || null,
+    window.sessionStorage.getItem("sort-by-create-date") || "DESC",
+  sortByName: window.sessionStorage.getItem("sort-by-name") || null,
   pageOffset: parseInt(
-    window.localStorage.getItem("home-page-offset") || 0,
+    window.sessionStorage.getItem("home-page-offset") || 0,
     10
   ),
   pageSize: 20,
-  lastScrollY: window.localStorage.getItem("last-scroll-y") || 0,
+  lastScrollY: window.sessionStorage.getItem("last-scroll-y") || 0,
   status: "idle",
+  singleFetchStatus: "idle",
   hasMore: false,
 };
 
@@ -35,10 +37,25 @@ export const fetchCertificates = createAsyncThunk(
   }
 );
 
+export const fetchCertificateById = createAsyncThunk(
+  "users/fetchCertificateById",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await api.getCertificateById(id);
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      return rejectWithValue(err.response);
+    }
+  }
+);
+
 function setFilterValueToLocalStorage(name, value) {
   value
-    ? window.localStorage.setItem(name, value)
-    : window.localStorage.removeItem(name);
+    ? window.sessionStorage.setItem(name, value)
+    : window.sessionStorage.removeItem(name);
 }
 
 const certificatesSlice = createSlice({
@@ -46,8 +63,8 @@ const certificatesSlice = createSlice({
   initialState,
   reducers: {
     reloadContent(state) {
-      window.localStorage.setItem("home-page-offset", 0);
-      window.localStorage.setItem("last-scroll-y", 0);
+      window.sessionStorage.setItem("home-page-offset", 0);
+      window.sessionStorage.setItem("last-scroll-y", 0);
 
       state.pageOffset = 0;
       state.lastScrollY = 0;
@@ -69,16 +86,16 @@ const certificatesSlice = createSlice({
       console.log(action.payload);
 
       if (sortByName) {
-        window.localStorage.setItem("sort-by-name", sortByName);
-        window.localStorage.removeItem("sort-by-create-date");
+        window.sessionStorage.setItem("sort-by-name", sortByName);
+        window.sessionStorage.removeItem("sort-by-create-date");
         state.sortByName = sortByName;
         state.sortByCreateDate = null;
       } else {
-        window.localStorage.setItem(
+        window.sessionStorage.setItem(
           "sort-by-create-date",
           sortByCreateDate || "DESC"
         );
-        window.localStorage.removeItem("sort-by-name");
+        window.sessionStorage.removeItem("sort-by-name");
         state.sortByCreateDate = sortByCreateDate || "DESC";
         state.sortByName = null;
       }
@@ -95,7 +112,7 @@ const certificatesSlice = createSlice({
       if (hasMore) {
         const nextPage = state.pageOffset + 1;
         state.pageOffset = nextPage;
-        window.localStorage.setItem("home-page-offset", nextPage);
+        window.sessionStorage.setItem("home-page-offset", nextPage);
       }
     },
 
@@ -105,7 +122,7 @@ const certificatesSlice = createSlice({
 
     lastScrollYEdited(state, action) {
       state.lastScrollY = action.payload;
-      window.localStorage.setItem("last-scroll-y", action.payload);
+      window.sessionStorage.setItem("last-scroll-y", action.payload);
     },
   },
   extraReducers(builder) {
@@ -120,6 +137,17 @@ const certificatesSlice = createSlice({
       })
       .addCase(fetchCertificates.rejected, (state, action) => {
         state.status = "failed";
+        state.error = action.payload.status;
+      })
+      .addCase(fetchCertificateById.pending, (state) => {
+        state.singleFetchStatus = "loading";
+      })
+      .addCase(fetchCertificateById.fulfilled, (state, action) => {
+        state.singleFetchStatus = "succeeded";
+        state.certificate = action.payload;
+      })
+      .addCase(fetchCertificateById.rejected, (state, action) => {
+        state.singleFetchStatus = "failed";
         state.error = action.payload.status;
       });
   },
