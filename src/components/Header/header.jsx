@@ -20,9 +20,9 @@ const Header = () => {
     <header className="header">
       <div className="header__nav-element nav-element">
         <span className="navbar__icon--menu"></span>
-        <a href="home.html" className="navbar__logo">
+        <Link to="/" className="navbar__logo">
           CertBY
-        </a>
+        </Link>
         <div className="hide-desktop">
           <span
             className="navbar__icon--search"
