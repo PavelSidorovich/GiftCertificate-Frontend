@@ -1,25 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchUserById, selectUserById } from "../../redux/slices/userSlice";
 import { logout } from "../../redux/slices/authSlice";
 import "./account-details.css";
+import PersonalInfoModal from "../../components/ModalWindow/personal-info-modal";
+import BalanceModal from "../../components/ModalWindow/balance-modal";
+import EditPasswordModal from "../../components/ModalWindow/edit-password-modal";
 
 const AccountDetails = (props) => {
   const userId = props.match.params.id;
   const dispatch = useDispatch();
   const user = useSelector((state) => selectUserById(state, userId));
   const fetchStatus = useSelector((state) => state.users.status);
-  const error = useSelector((state) => state.users.error);
+  const [balanceModalIsHidden, setBalanceModalIsHidden] = useState(true);
+  const [editPasswordModalIsHidden, setEditPasswordModalIsHidden] = useState(
+    true
+  );
+  const [personalInfoModalIsHidden, setPersonalInfoModalIsHidden] = useState(
+    true
+  );
 
   const handleSignOut = () => {
     dispatch(logout());
   };
 
   useEffect(() => {
-    // if (fetchStatus === "idle") {
     dispatch(fetchUserById(userId));
-    // }
   }, [dispatch]);
 
   return (
@@ -38,15 +45,24 @@ const AccountDetails = (props) => {
           <p className="user-card__balance">
             Balance: {fetchStatus === "succeeded" ? user.balance : null} $
           </p>
-          <button className="btn-main-lg user-card__btn">
+          <button
+            className="btn-main-lg user-card__btn"
+            onClick={() => setPersonalInfoModalIsHidden(false)}
+          >
             <span className="user-card__icon--edit"></span>
             Edit personal info
           </button>
-          <button className="btn-main-lg user-card__btn">
+          <button
+            className="btn-main-lg user-card__btn"
+            onClick={() => setBalanceModalIsHidden(false)}
+          >
             <span className="user-card__icon--balance"></span>
             Top up balance
           </button>
-          <button className="btn-main-lg user-card__btn">
+          <button
+            className="btn-main-lg user-card__btn"
+            onClick={() => setEditPasswordModalIsHidden(false)}
+          >
             <span className="user-card__icon--password"></span>
             Change password
           </button>
@@ -59,6 +75,25 @@ const AccountDetails = (props) => {
           </button>
         </div>
       </div>
+      {fetchStatus === "succeeded" ? (
+        <>
+          <PersonalInfoModal
+            user={user}
+            setIsHidden={setPersonalInfoModalIsHidden}
+            isHidden={personalInfoModalIsHidden}
+          />
+          <BalanceModal
+            user={user}
+            setIsHidden={setBalanceModalIsHidden}
+            isHidden={balanceModalIsHidden}
+          />
+          <EditPasswordModal
+            user={user}
+            setIsHidden={setEditPasswordModalIsHidden}
+            isHidden={editPasswordModalIsHidden}
+          />
+        </>
+      ) : null}
     </div>
   );
 };

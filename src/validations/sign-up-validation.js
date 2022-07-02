@@ -1,3 +1,6 @@
+import validatePassword from "./password-validation";
+import validatePersonalInfo from "./personal-info-validation";
+
 const validate = (values) => {
   const errors = {};
 
@@ -9,35 +12,11 @@ const validate = (values) => {
     errors.email = "success";
   }
 
-  if (!values.password) {
-    errors.password = "Required";
-  } else if (values.password.length < 8 || values.password.length > 30) {
-    errors.password = "Password should be at least 8 symbols (up to 30)";
-  } else {
-    errors.password = "success";
-  }
+  const passwordErrors = validatePassword(values);
+  errors = { ...errors, ...passwordErrors };
 
-  if (values.passwordConfirm !== values.password) {
-    errors.passwordConfirm = "Passwords are not equal";
-  } else {
-    errors.passwordConfirm = "success";
-  }
-
-  if (!values.firstName) {
-    errors.firstName = "Required";
-  } else if (!/^[A-z]{2,30}$/i.test(values.firstName)) {
-    errors.firstName = "First name should contain letters (length: 2-256)";
-  } else {
-    errors.firstName = "success";
-  }
-
-  if (!values.lastName) {
-    errors.lastName = "Required";
-  } else if (!/^[A-z]{2,30}$/i.test(values.lastName)) {
-    errors.lastName = "Last name should contain letters (length: 2-256)";
-  } else {
-    errors.lastName = "success";
-  }
+  const personalInfoErrors = validatePersonalInfo(values);
+  errors = { ...errors, ...personalInfoErrors };
 
   if (
     errors.email === "success" &&

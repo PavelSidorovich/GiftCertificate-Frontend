@@ -11,3 +11,6 @@ export { default as HomeBanner } from "./HomeBanner/home-banner";
 export { default as UserPages } from "./UserPages/user-pages";
 export { default as CartList } from "./CartList/cart-list";
 export { default as CartSidebar } from "./CartSidebar/cart-sidebar";
+export { default as PersonalInfoModal } from "./ModalWindow/personal-info-modal";
+export { default as BalanceModal } from "./ModalWindow/balance-modal";
+export { default as EditPasswordModal } from "./ModalWindow/edit-password-modal";

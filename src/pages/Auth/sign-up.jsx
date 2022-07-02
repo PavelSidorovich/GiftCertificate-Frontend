@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+import {
+  getFeedback,
+  getFieldInputClass,
+  getInputFieldIconClass,
+} from "../../helpers/form-classes";
 import { login, setAuthContext, signUp } from "../../redux/slices/authSlice";
+
 import validate from "../../validations/sign-up-validation";
 import "./auth.css";
 
@@ -17,25 +23,6 @@ const SignUp = (props) => {
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [fieldErrors, setFieldErrors] = useState({});
-
-  const getFieldInputClass = (value) => {
-    return (
-      "form-block__input" +
-      (!value || value === "success" ? "" : " form-block__input--invalid")
-    );
-  };
-
-  const getInputFieldIconClass = (value) => {
-    return !value
-      ? ""
-      : value === "success"
-      ? "success-input-icon"
-      : "invalid-input-icon";
-  };
-
-  const getFeedback = (value) => {
-    return value === "success" ? null : value;
-  };
 
   const handleChange = (e) => {
     switch (e.target.id) {
@@ -158,6 +145,7 @@ const SignUp = (props) => {
               type="text"
               placeholder="First name"
               onChange={handleChange}
+              autoComplete="off"
             />
             <span
               className={getInputFieldIconClass(fieldErrors.firstName)}
@@ -176,6 +164,7 @@ const SignUp = (props) => {
               type="text"
               placeholder="Last name"
               onChange={handleChange}
+              autoComplete="off"
             />
             <span
               className={getInputFieldIconClass(fieldErrors.firstName)}
