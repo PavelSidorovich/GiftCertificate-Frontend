@@ -74,6 +74,14 @@
   @include navbar__icon(url("../../assets/images/shopping_cart_24dp.svg"));
 }
 
+.navbar__icon--tag {
+  @include navbar__icon(url("../../assets/images/tag_24dp.svg"));
+}
+
+.navbar__icon--users {
+  @include navbar__icon(url("../../assets/images/users_24dp.svg"));
+}
+
 .navbar__icon--account {
   @include navbar__icon(url("../../assets/images/account_24dp.svg"));
 }

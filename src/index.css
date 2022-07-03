@@ -109,7 +109,7 @@ textarea {
 }
 
 .form-block label, .form-block-sm label {
-  color: #8b8b8b;
+  display: block;
   margin-bottom: 5px;
 }
 

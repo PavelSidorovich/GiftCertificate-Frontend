@@ -9,11 +9,40 @@ const Header = () => {
   const [searchIsHidden, setSearchIsHidden] = useState(true);
   const userId = useSelector((state) => state.auth.id);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const isAdmin = useSelector((state) => state.auth.isAdmin);
 
   const handleOpenSearch = () => {
     document.querySelector(".header__nav-element").classList.add("hidden");
-
     setSearchIsHidden(false);
+  };
+
+  const getSpecificUserRoleLinks = () => {
+    return isAdmin ? (
+      <>
+        <li className="navbar__item">
+          <Link to="/control/tags" className="navbar__icon--link">
+            <span className="navbar__icon--tag"></span>
+            <span className="icon__text">Tags</span>
+          </Link>
+        </li>
+        <li className="navbar__item">
+          <Link to="/control/users" className="navbar__icon--link">
+            <span className="navbar__icon--users"></span>
+            <span className="icon__text">Users</span>
+          </Link>
+        </li>
+      </>
+    ) : (
+      <li className="navbar__item">
+        <Link
+          to={userId && isLoggedIn ? "/users/" + userId + "/cart" : "/sign-in"}
+          className="navbar__icon--link"
+        >
+          <span className="navbar__icon--cart"></span>
+          <span className="icon__text">Cart</span>
+        </Link>
+      </li>
+    );
   };
 
   return (
@@ -42,17 +71,7 @@ const Header = () => {
               <span className="icon__text">Home</span>
             </Link>
           </li>
-          <li className="navbar__item">
-            <Link
-              to={
-                userId && isLoggedIn ? "/users/" + userId + "/cart" : "/sign-in"
-              }
-              className="navbar__icon--link"
-            >
-              <span className="navbar__icon--cart"></span>
-              <span className="icon__text">Cart</span>
-            </Link>
-          </li>
+          {getSpecificUserRoleLinks()}
           <li className="navbar__item">
             <Link
               to={userId && isLoggedIn ? "/users/" + userId : "/sign-in"}

@@ -7,6 +7,33 @@ import "./footer.css";
 const Footer = () => {
   const userId = useSelector((state) => state.auth.id);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const isAdmin = useSelector((state) => state.auth.isAdmin);
+
+  const getSpecificUserRoleLinks = () => {
+    return isAdmin ? (
+      <>
+        <li className="navbar__item">
+          <Link to="control/tags" className="navbar__icon--link">
+            <span className="navbar__icon--tag"></span>
+          </Link>
+        </li>
+        <li className="navbar__item">
+          <Link to="control/users" className="navbar__icon--link">
+            <span className="navbar__icon--users"></span>
+          </Link>
+        </li>
+      </>
+    ) : (
+      <li className="navbar__item">
+        <Link
+          to={userId && isLoggedIn ? "/users/" + userId + "/cart" : "/sign-in"}
+          className="navbar__icon--link"
+        >
+          <span className="navbar__icon--cart"></span>
+        </Link>
+      </li>
+    );
+  };
 
   return (
     <>
@@ -61,16 +88,7 @@ const Footer = () => {
             <span className="navbar__icon--home"></span>
           </Link>
         </li>
-        <li className="navbar__item">
-          <Link
-            to={
-              userId && isLoggedIn ? "/users/" + userId + "/cart" : "/sign-in"
-            }
-            className="navbar__icon--link"
-          >
-            <span className="navbar__icon--cart"></span>
-          </Link>
-        </li>
+        {getSpecificUserRoleLinks()}
         <li className="navbar__item">
           <Link
             to={userId && isLoggedIn ? "/users/" + userId : "/sign-in"}
