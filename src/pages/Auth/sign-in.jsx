@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { login, logout, setAuthContext } from "../../redux/slices/authSlice";
@@ -34,7 +34,7 @@ const SignIn = (props) => {
   }, [authError]);
 
   return loginStatus === "succeeded" ? (
-    props.history.push("/")
+    <Redirect to="/" />
   ) : (
     <div className="sign-in-page form__wrap">
       <form onSubmit={handleSubmit}>
