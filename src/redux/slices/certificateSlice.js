@@ -19,11 +19,12 @@ const initialState = {
   lastScrollY: window.sessionStorage.getItem("last-scroll-y") || 0,
   status: "idle",
   singleFetchStatus: "idle",
+  controlStatus: "idle",
   hasMore: false,
 };
 
 export const fetchCertificates = createAsyncThunk(
-  "users/fetchCertificates",
+  "certificates/fetchCertificates",
   async (params, { rejectWithValue }) => {
     try {
       const response = await api.getCertificates(params);
@@ -38,10 +39,40 @@ export const fetchCertificates = createAsyncThunk(
 );
 
 export const fetchCertificateById = createAsyncThunk(
-  "users/fetchCertificateById",
+  "certificates/fetchCertificateById",
   async (id, { rejectWithValue }) => {
     try {
       const response = await api.getCertificateById(id);
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      return rejectWithValue(err.response);
+    }
+  }
+);
+
+export const createCertificate = createAsyncThunk(
+  "certificates/createCertificate",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await api.createCertificate(data);
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      return rejectWithValue(err.response);
+    }
+  }
+);
+
+export const updateCertificate = createAsyncThunk(
+  "certificates/updateCertificate",
+  async ({ id: id, data: data }, { rejectWithValue }) => {
+    try {
+      const response = await api.updateCertificate(id, data);
       return response.data;
     } catch (err) {
       if (!err.response) {
@@ -149,16 +180,32 @@ const certificatesSlice = createSlice({
       .addCase(fetchCertificateById.rejected, (state, action) => {
         state.singleFetchStatus = "failed";
         state.error = action.payload.status;
+      })
+      .addCase(createCertificate.pending, (state) => {
+        state.controlStatus = "loading";
+      })
+      .addCase(createCertificate.fulfilled, (state, action) => {
+        state.controlStatus = "succeeded";
+      })
+      .addCase(createCertificate.rejected, (state, action) => {
+        state.controlStatus = "failed";
+        state.error = action.payload.status;
+      })
+      .addCase(updateCertificate.pending, (state) => {
+        state.controlStatus = "loading";
+      })
+      .addCase(updateCertificate.fulfilled, (state, action) => {
+        state.controlStatus = "succeeded";
+      })
+      .addCase(updateCertificate.rejected, (state, action) => {
+        state.controlStatus = "failed";
+        state.error = action.payload.status;
       });
   },
 });
 
-export const {
-  filterEdited,
-  lastScrollYEdited,
-  incrementPage,
-  reloadContent,
-} = certificatesSlice.actions;
+export const { filterEdited, lastScrollYEdited, incrementPage, reloadContent } =
+  certificatesSlice.actions;
 
 export const selectFilter = (state) => {
   const filter = {};

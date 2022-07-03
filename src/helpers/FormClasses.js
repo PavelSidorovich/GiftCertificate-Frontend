@@ -16,3 +16,12 @@ export const getInputFieldIconClass = (value) => {
 export const getFeedback = (value) => {
   return value === "success" ? null : value;
 };
+
+export const handleInputChange = (e, setValue, fieldErrors, setFieldErrors) => {
+  const newFieldErrors = fieldErrors;
+
+  setValue(e.target.value);
+  delete newFieldErrors[e.target.id];
+
+  setFieldErrors(newFieldErrors);
+};
