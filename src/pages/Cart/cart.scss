@@ -38,15 +38,19 @@
 .cart__item-img {
   margin-right: 12px;
   width: 140px;
-  height: 140px;
   flex-shrink: 0;
   border-radius: 8px;
   overflow: hidden;
   background-color: rgba(41, 43, 83, 0.03);
 }
 
+.cart__item-img img {
+  vertical-align: middle;
+}
+
 .cart__item-img::before {
   content: "";
+  height: 100%;
   display: inline-block;
   vertical-align: middle;
 }
@@ -219,6 +223,10 @@
   .btn__del {
     text-decoration: underline dashed;
     text-underline-offset: 3px;
+  }
+
+  .cart__item-img {
+    width: 200px;
   }
 
   .cart__item-wrap:hover .btn__del span {

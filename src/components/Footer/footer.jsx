@@ -1,6 +1,8 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 import "./footer.css";
 
@@ -8,29 +10,39 @@ const Footer = () => {
   const userId = useSelector((state) => state.auth.id);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const isAdmin = useSelector((state) => state.auth.isAdmin);
+  const path = useLocation().pathname;
 
   const getSpecificUserRoleLinks = () => {
     return isAdmin ? (
       <>
         <li className="navbar__item">
-          <Link to="control/tags" className="navbar__icon--link">
+          <NavLink
+            to="control/tags"
+            className="navbar__icon--link"
+            isActive={() => path.includes("control/tags")}
+          >
             <span className="navbar__icon--tag"></span>
-          </Link>
+          </NavLink>
         </li>
         <li className="navbar__item">
-          <Link to="control/users" className="navbar__icon--link">
+          <NavLink
+            to="control/users"
+            className="navbar__icon--link"
+            isActive={() => path.includes("control/users")}
+          >
             <span className="navbar__icon--users"></span>
-          </Link>
+          </NavLink>
         </li>
       </>
     ) : (
       <li className="navbar__item">
-        <Link
+        <NavLink
           to={userId && isLoggedIn ? "/users/" + userId + "/cart" : "/sign-in"}
           className="navbar__icon--link"
+          isActive={() => path.includes("cart")}
         >
           <span className="navbar__icon--cart"></span>
-        </Link>
+        </NavLink>
       </li>
     );
   };
@@ -84,18 +96,25 @@ const Footer = () => {
       </footer>
       <ul className="navbar-mobile hide-desktop navbar__menu">
         <li className="navbar__item">
-          <Link to="/" className="navbar__icon--link">
+          <NavLink
+            to="/"
+            className="navbar__icon--link"
+            isActive={() => path && path === "/"}
+          >
             <span className="navbar__icon--home"></span>
-          </Link>
+          </NavLink>
         </li>
         {getSpecificUserRoleLinks()}
         <li className="navbar__item">
-          <Link
+          <NavLink
             to={userId && isLoggedIn ? "/users/" + userId : "/sign-in"}
             className="navbar__icon--link"
+            isActive={() =>
+              path && path.match(new RegExp("/sign-in|/sign-up|/users/[\\d]+$"))
+            }
           >
             <span className="navbar__icon--account navbar__icon--active"></span>
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </>

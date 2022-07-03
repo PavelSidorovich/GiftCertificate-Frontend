@@ -158,6 +158,11 @@
           filter: invert(95%) sepia(52%) saturate(1860%) hue-rotate(177deg) brightness(123%) contrast(92%);
 }
 
+.active > span {
+  -webkit-filter: invert(49%) sepia(41%) saturate(4267%) hue-rotate(155deg) brightness(97%) contrast(99%);
+          filter: invert(49%) sepia(41%) saturate(4267%) hue-rotate(155deg) brightness(97%) contrast(99%);
+}
+
 @media only screen and (min-width: 961px) {
   .header {
     padding: 10px 30px 35px 30px;
