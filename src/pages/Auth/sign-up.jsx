@@ -6,7 +6,7 @@ import {
   getFeedback,
   getFieldInputClass,
   getInputFieldIconClass,
-} from "../../helpers/form-classes";
+} from "../../helpers/FormClasses";
 import { login, setAuthContext, signUp } from "../../redux/slices/authSlice";
 
 import validate from "../../validations/sign-up-validation";

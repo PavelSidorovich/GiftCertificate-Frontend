@@ -6,6 +6,7 @@ const initialState = {
   id: null,
   email: null,
   isAdmin: false,
+  role: null,
   isLoggedIn: false,
   error: null,
   loginStatus: "idle",
@@ -78,6 +79,7 @@ const authSlice = createSlice({
         state.id = AUTH_CONTEXT.getAuthenticatedUserId();
         state.email = AUTH_CONTEXT.getAuthenticatedUserEmail();
         state.isAdmin = AUTH_CONTEXT.isAdmin();
+        state.role = AUTH_CONTEXT.getAuthenticatedUserRole();
       }
     },
   },

@@ -33,7 +33,7 @@ class AuthContext {
         window.localStorage.setItem("ACCESS_TOKEN", res.data);
         window.localStorage.setItem(
           "ROLE",
-          JSON.stringify(this.parseJwt(res.data).roles[0].authority)
+          this.parseJwt(res.data).roles[0].authority
         );
         return { data: res.data, status: res.status };
       });
@@ -53,6 +53,12 @@ class AuthContext {
     }
 
     return false;
+  }
+
+  getAuthenticatedUserRole() {
+    if (this.isLoggedIn) {
+      return window.localStorage.getItem("ROLE");
+    }
   }
 
   isAdmin() {
