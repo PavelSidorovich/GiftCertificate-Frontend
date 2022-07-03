@@ -114,8 +114,6 @@ const certificatesSlice = createSlice({
       state.tagName = tagName;
       state.description = description;
 
-      console.log(action.payload);
-
       if (sortByName) {
         window.sessionStorage.setItem("sort-by-name", sortByName);
         window.sessionStorage.removeItem("sort-by-create-date");
