@@ -2,7 +2,7 @@ import validatePassword from "./password-validation";
 import validatePersonalInfo from "./personal-info-validation";
 
 const validate = (values) => {
-  const errors = {};
+  let errors = {};
 
   if (!values.email) {
     errors.email = "Required";
