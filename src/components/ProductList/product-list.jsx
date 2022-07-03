@@ -5,16 +5,34 @@ import { useDispatch, useSelector } from "react-redux";
 import { editUserCart } from "../../redux/slices/ordersSlice";
 import { selectId } from "../../redux/slices/authSlice";
 import "./product-list.css";
+import AdminButtons from "./admin-buttons";
+import UserButtons from "./user-buttons";
+import {
+  certificateDeletedById,
+  deleteCertificateById,
+} from "../../redux/slices/certificateSlice";
 
 const ProductList = (props) => {
   const dispatch = useDispatch();
   const userid = useSelector(selectId);
   const cartEditStatus = useSelector((state) => state.orders.editStatus);
+  const controlStatus = useSelector(
+    (state) => state.certificates.controlStatus
+  );
+  const isAdmin = useSelector((state) => state.auth.isAdmin);
 
   const handleToCartButtonClick = (e) => {
     const certificateId = e.target.getAttribute("aria-describedby");
 
     dispatch(editUserCart({ userId: userid, itemId: certificateId }));
+  };
+
+  const handleProductDelete = (id) => {
+    dispatch(deleteCertificateById(id)).then((res) => {
+      if (res.payload.status === 204) {
+        dispatch(certificateDeletedById(id));
+      }
+    });
   };
 
   const certificates =
@@ -32,13 +50,17 @@ const ProductList = (props) => {
         </Link>
         <div className="product-card__bottom">
           <p className="product-card__price">{certificate.price} $</p>
-          <button
-            className="btn-main-sm"
-            aria-describedby={certificate.id}
-            onClick={handleToCartButtonClick}
-          >
-            To cart
-          </button>
+          {isAdmin ? (
+            <AdminButtons
+              id={certificate.id}
+              handleDeleteById={handleProductDelete}
+            />
+          ) : (
+            <UserButtons
+              id={certificate.id}
+              onClick={handleToCartButtonClick}
+            />
+          )}
         </div>
       </div>
     ));

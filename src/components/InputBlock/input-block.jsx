@@ -14,6 +14,7 @@ const InputBlock = ({
   error,
   onChange,
   autoComplete,
+  disabled,
   min,
 }) => {
   const getInput = () => {
@@ -21,6 +22,7 @@ const InputBlock = ({
       <input
         id={id}
         type={type}
+        disabled={disabled}
         placeholder={placeholder || ""}
         value={value || ""}
         onChange={onChange}
@@ -30,6 +32,7 @@ const InputBlock = ({
       <input
         id={id}
         type={type}
+        disabled={disabled}
         placeholder={placeholder || ""}
         value={value || ""}
         onChange={onChange}

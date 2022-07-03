@@ -16,6 +16,7 @@ const ProductDetails = (props) => {
   const dispatch = useDispatch();
   const userid = useSelector(selectId);
   const certificate = useSelector((state) => state.certificates.certificate);
+  const isAdmin = useSelector((state) => state.auth.isAdmin);
 
   const handleBackClick = () => {
     props.history.action !== "POP"
@@ -52,12 +53,14 @@ const ProductDetails = (props) => {
             <div className="product-page__price">
               <p>{certificate.price} $</p>
             </div>
-            <button
-              className="to-cart-btn btn-main-lg hide-mobile"
-              onClick={handleToCartButtonClick}
-            >
-              To cart
-            </button>
+            {isAdmin ? null : (
+              <button
+                className="to-cart-btn btn-main-lg hide-mobile"
+                onClick={handleToCartButtonClick}
+              >
+                To cart
+              </button>
+            )}
           </div>
           <div className="product-page__name">
             <p>{certificate.name}</p>
@@ -104,8 +107,8 @@ const ProductDetails = (props) => {
           </div>
         </div>
       </div>
-      <div class="product-page__order hide-desktop">
-        <button class="to-cart-btn btn-main-lg">To cart</button>
+      <div className="product-page__order hide-desktop">
+        <button className="to-cart-btn btn-main-lg">To cart</button>
       </div>
     </>
   ) : (

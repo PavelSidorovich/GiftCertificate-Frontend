@@ -25,6 +25,8 @@
 
 .cancel-btn {
   @extend %block-btn;
+  margin-right: 20px;
+  text-align: center;
   background-color: transparent;
   color: $color-blue-2;
   font-weight: unset;

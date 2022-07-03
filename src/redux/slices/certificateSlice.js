@@ -83,6 +83,22 @@ export const updateCertificate = createAsyncThunk(
   }
 );
 
+export const deleteCertificateById = createAsyncThunk(
+  "certificates/deleteCertificateById",
+  async (id, { rejectWithValue }) => {
+    try {
+      console.log(id);
+      const response = await api.deleteCertificate(id);
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      return rejectWithValue(err.response);
+    }
+  }
+);
+
 function setFilterValueToLocalStorage(name, value) {
   value
     ? window.sessionStorage.setItem(name, value)
@@ -153,6 +169,12 @@ const certificatesSlice = createSlice({
       state.lastScrollY = action.payload;
       window.sessionStorage.setItem("last-scroll-y", action.payload);
     },
+
+    certificateDeletedById(state, action) {
+      state.certificates = state.certificates.filter(
+        (cert) => cert.id !== action.payload
+      );
+    },
   },
   extraReducers(builder) {
     builder
@@ -198,12 +220,27 @@ const certificatesSlice = createSlice({
       .addCase(updateCertificate.rejected, (state, action) => {
         state.controlStatus = "failed";
         state.error = action.payload.status;
+      })
+      .addCase(deleteCertificateById.pending, (state) => {
+        state.controlStatus = "loading";
+      })
+      .addCase(deleteCertificateById.fulfilled, (state, action) => {
+        state.controlStatus = "succeeded";
+      })
+      .addCase(deleteCertificateById.rejected, (state, action) => {
+        state.controlStatus = "failed";
+        state.error = action.payload.status;
       });
   },
 });
 
-export const { filterEdited, lastScrollYEdited, incrementPage, reloadContent } =
-  certificatesSlice.actions;
+export const {
+  filterEdited,
+  lastScrollYEdited,
+  incrementPage,
+  reloadContent,
+  certificateDeletedById,
+} = certificatesSlice.actions;
 
 export const selectFilter = (state) => {
   const filter = {};

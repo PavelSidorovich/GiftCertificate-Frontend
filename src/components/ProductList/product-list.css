@@ -60,6 +60,51 @@
   font-size: 24px;
 }
 
+.product-card__admin-buttons--edit {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.product-card__admin-buttons--edit span {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-size: 24px;
+  background-image: url("../../assets/images/edit_24dp.svg");
+  -webkit-filter: invert(70%) sepia(13%) saturate(5118%) hue-rotate(7deg) brightness(100%) contrast(101%);
+          filter: invert(70%) sepia(13%) saturate(5118%) hue-rotate(7deg) brightness(100%) contrast(101%);
+}
+
+.product-card__admin-buttons--edit:hover span {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-size: 24px;
+  background-image: url("../../assets/images/edit_24dp.svg");
+  -webkit-filter: invert(70%) sepia(15%) saturate(4746%) hue-rotate(6deg) brightness(90%) contrast(93%);
+          filter: invert(70%) sepia(15%) saturate(4746%) hue-rotate(6deg) brightness(90%) contrast(93%);
+}
+
+.product-card__admin-buttons--delete:hover span {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-size: 24px;
+  background-image: url("../../assets/images/delete_24dp.svg");
+  -webkit-filter: invert(21%) sepia(79%) saturate(3085%) hue-rotate(341deg) brightness(72%) contrast(109%);
+          filter: invert(21%) sepia(79%) saturate(3085%) hue-rotate(341deg) brightness(72%) contrast(109%);
+}
+
+.product-card__admin-buttons--delete span {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-size: 24px;
+  background-image: url("../../assets/images/delete_24dp.svg");
+  -webkit-filter: invert(53%) sepia(88%) saturate(5907%) hue-rotate(334deg) brightness(88%) contrast(97%);
+          filter: invert(53%) sepia(88%) saturate(5907%) hue-rotate(334deg) brightness(88%) contrast(97%);
+}
+
 @media only screen and (min-width: 961px) {
   .product-card {
     width: 247px;

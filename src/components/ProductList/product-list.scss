@@ -49,6 +49,47 @@
   font-size: 24px;
 }
 
+.product-card__admin-buttons--edit {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.product-card__admin-buttons--edit span {
+  @include icon(
+    url("../../assets/images/edit_24dp.svg"),
+    24px,
+    $filter-warning,
+    inline-block
+  );
+}
+
+.product-card__admin-buttons--edit:hover span {
+  @include icon(
+    url("../../assets/images/edit_24dp.svg"),
+    24px,
+    $filter-warning-dark,
+    inline-block
+  );
+}
+
+.product-card__admin-buttons--delete:hover span {
+  @include icon(
+    url("../../assets/images/delete_24dp.svg"),
+    24px,
+    $filter-danger-dark,
+    inline-block
+  );
+}
+
+.product-card__admin-buttons--delete span {
+  @include icon(
+    url("../../assets/images/delete_24dp.svg"),
+    24px,
+    $filter-danger,
+    inline-block
+  );
+}
+
 @media only screen and (min-width: 961px) {
   .product-card {
     width: 247px;

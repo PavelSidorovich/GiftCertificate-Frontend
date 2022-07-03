@@ -213,6 +213,7 @@ const ProductControl = (props) => {
               label="Item name"
               value={name}
               error={fieldErrors.name}
+              disabled={isUpdate}
               onChange={(e) =>
                 handleInputChange(e, setName, fieldErrors, setFieldErrors)
               }
@@ -270,9 +271,9 @@ const ProductControl = (props) => {
           </div>
         </div>
         <div className="btn__container">
-          <button type="button" className="btn-main-lg cancel-btn">
+          <Link to="/" className="btn-main-lg cancel-btn">
             Cancel
-          </button>
+          </Link>
           <button type="submit" className="btn-main-lg save-btn">
             Save
           </button>
