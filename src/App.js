@@ -1,21 +1,18 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import {
-  Header,
-  Footer,
-  AuthContext,
-  RequireAuth,
-  UserPages,
-} from "./components";
+import { Header, Footer, AuthContext, AuthRoute } from "./components";
 import {
   AccountDetails,
   Cart,
+  Error,
   Home,
+  ProductControl,
   ProductDetails,
   SignIn,
   SignUp,
 } from "./pages/index";
+import { UserRoles } from "./helpers/UserRoles";
 
 export default function App() {
   return (
@@ -28,15 +25,36 @@ export default function App() {
               <Route exact path="/" component={Home} />
               <Route path="/sign-in" component={SignIn} />
               <Route path="/sign-up" component={SignUp} />
-              <Route path="/certificates/:id" component={ProductDetails} />
+              <Route
+                exact
+                path="/certificates/:id"
+                component={ProductDetails}
+              />
+              <Error path="/error" component={Error} />
 
-              <RequireAuth>
-                <Route exact path="/users/:id" component={AccountDetails} />
-
-                <UserPages>
-                  <Route path="/users/:id/cart/" component={Cart} />
-                </UserPages>
-              </RequireAuth>
+              <AuthRoute
+                path="/users/:id/cart/"
+                component={Cart}
+                requiredRoles={[UserRoles.user]}
+              />
+              <AuthRoute
+                exact
+                path="/users/:id"
+                component={AccountDetails}
+                requiredRoles={[UserRoles.admin, UserRoles.user]}
+              />
+              <AuthRoute
+                exact
+                path="/control/certificates/:action"
+                component={ProductControl}
+                requiredRoles={[UserRoles.admin]}
+              />
+              <AuthRoute
+                exact
+                path="/control/certificates/:id/:action"
+                component={ProductControl}
+                requiredRoles={[UserRoles.admin]}
+              />
             </Switch>
           </main>
           <Footer />
