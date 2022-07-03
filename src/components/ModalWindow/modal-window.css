@@ -10,7 +10,7 @@
   background: rgba(0, 0, 0, 0.6);
 }
 
-.hidden {
+.modal-hidden {
   opacity: 0;
   visibility: hidden;
 }

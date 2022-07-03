@@ -6,7 +6,7 @@ import {
   getFeedback,
   getFieldInputClass,
   getInputFieldIconClass,
-} from "../../helpers/form-classes";
+} from "../../helpers/FormClasses";
 import "./modal-window.css";
 import validateBalance from "../../validations/balance-validation";
 
@@ -41,7 +41,7 @@ const BalanceModal = ({ user, isHidden, setIsHidden }) => {
   const showModalIfNotHidden = () => {
     const classList = modalRef.current.classList;
 
-    isHidden ? classList.add("hidden") : classList.remove("hidden");
+    isHidden ? classList.add("modal-hidden") : classList.remove("modal-hidden");
   };
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const BalanceModal = ({ user, isHidden, setIsHidden }) => {
   }, [isHidden]);
 
   return (
-    <div ref={modalRef} className="modal hidden">
+    <div ref={modalRef} className="modal modal-hidden">
       <div className="modal__body">
         <div className="modal__header">
           <p className="section-header">Top up balance</p>
