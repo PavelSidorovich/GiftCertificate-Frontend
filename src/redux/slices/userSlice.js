@@ -63,8 +63,6 @@ const usersSlice = createSlice({
       })
       .addCase(fetchUserById.fulfilled, (state, action) => {
         state.status = "succeeded";
-
-        // Add any fetched posts to the array
         state.user = action.payload;
       })
       .addCase(fetchUserById.rejected, (state, action) => {
@@ -88,7 +86,6 @@ const usersSlice = createSlice({
       })
       .addCase(changeUserPassword.fulfilled, (state, action) => {
         state.status = "succeeded";
-        console.log(action.payload);
         state.user = action.payload;
       })
       .addCase(changeUserPassword.rejected, (state, action) => {
