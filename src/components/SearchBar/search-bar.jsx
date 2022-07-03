@@ -1,5 +1,6 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 
 import {
@@ -7,20 +8,43 @@ import {
   reloadContent,
 } from "../../redux/slices/certificateSlice";
 import "./search-bar.css";
+import {
+  needRedirectUpdated,
+  searchValueUpdated,
+  selectNeedRedirect,
+  selectSearchValue,
+} from "../../redux/slices/searchSlice";
+import { useEffect } from "react";
+import { useRef } from "react";
 
 const SearchBar = ({ isHidden, setSearchIsHidden }) => {
   const dispatch = useDispatch();
+  const needRedirect = useSelector(selectNeedRedirect);
+  const searchValue = useSelector(selectSearchValue);
+  const searchInput = useRef(null);
 
   const debouncedSearch = _.debounce((e) => {
     dispatch(filterEdited({ certName: e.target.value }));
     dispatch(reloadContent());
+    dispatch(searchValueUpdated(e.target.value));
+    dispatch(needRedirectUpdated(true));
   }, 1000);
 
   const handleCloseSearch = () => {
     document.querySelector(".header__nav-element").classList.remove("hidden");
-
     setSearchIsHidden(true);
   };
+
+  useEffect(() => {
+    if (searchInput.current) {
+      searchInput.current.value = searchValue;
+    }
+  });
+
+  if (needRedirect) {
+    dispatch(needRedirectUpdated(false));
+    return <Redirect to="/" />;
+  }
 
   return (
     <div
@@ -31,6 +55,7 @@ const SearchBar = ({ isHidden, setSearchIsHidden }) => {
       }
     >
       <input
+        ref={searchInput}
         className="search-catalog__input"
         type="text"
         placeholder="Search..."
