@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import { NotificationManager } from "react-notifications";
 
 import { updateUserById } from "../../redux/slices/userSlice";
 import {
@@ -33,7 +34,11 @@ const BalanceModal = ({ user, isHidden, setIsHidden }) => {
     setFieldErrors(errors);
 
     if (errors.balance === "success") {
-      dispatch(updateUserById(values));
+      dispatch(updateUserById(values)).then((res) => {
+        if (res.payload.status === 200) {
+          NotificationManager.success("Balance was successfully refilled!");
+        }
+      });
       setIsHidden(true);
     }
   };

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { NotificationManager } from "react-notifications";
 
 import { Loading } from "../../components";
 import { selectId } from "../../redux/slices/authSlice";
@@ -25,7 +26,13 @@ const ProductDetails = (props) => {
   };
 
   const handleToCartButtonClick = () => {
-    dispatch(editUserCart({ userId: userid, itemId: certificate.id }));
+    dispatch(editUserCart({ userId: userid, itemId: certificate.id })).then(
+      (res) => {
+        if (res.payload.status === 201) {
+          NotificationManager.success("Item was added to cart");
+        }
+      }
+    );
   };
 
   const tags = certificate

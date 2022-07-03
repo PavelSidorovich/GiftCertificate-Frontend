@@ -73,7 +73,7 @@ export const updateCertificate = createAsyncThunk(
   async ({ id: id, data: data }, { rejectWithValue }) => {
     try {
       const response = await api.updateCertificate(id, data);
-      return response.data;
+      return response;
     } catch (err) {
       if (!err.response) {
         throw err;
@@ -87,9 +87,8 @@ export const deleteCertificateById = createAsyncThunk(
   "certificates/deleteCertificateById",
   async (id, { rejectWithValue }) => {
     try {
-      console.log(id);
       const response = await api.deleteCertificate(id);
-      return response.data;
+      return response;
     } catch (err) {
       if (!err.response) {
         throw err;

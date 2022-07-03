@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { NotificationContainer } from "react-notifications";
 
 import { Header, Footer, AuthContext, AuthRoute } from "./components";
 import {
@@ -20,6 +21,7 @@ export default function App() {
       <div className="wrapper">
         <AuthContext>
           <Header />
+          <NotificationContainer />
           <main>
             <Switch>
               <Route exact path="/" component={Home} />

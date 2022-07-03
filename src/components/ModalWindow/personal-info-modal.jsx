@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import { NotificationManager } from "react-notifications";
 
 import { updateUserById } from "../../redux/slices/userSlice";
 import validatePersonalInfo from "../../validations/personal-info-validation";
@@ -36,7 +37,14 @@ const PersonalInfoModal = ({ user, isHidden, setIsHidden }) => {
     setFieldErrors(errors);
 
     if (errors.firstName === "success" && errors.lastName === "success") {
-      dispatch(updateUserById(values));
+      dispatch(updateUserById(values)).then((res) => {
+        if (res.payload.status === 200) {
+          NotificationManager.success(
+            "User personal info was successfully updated",
+            "Success"
+          );
+        }
+      });
       setIsHidden(true);
     }
   };

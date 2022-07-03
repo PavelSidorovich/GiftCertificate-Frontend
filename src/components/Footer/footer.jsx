@@ -17,6 +17,15 @@ const Footer = () => {
       <>
         <li className="navbar__item">
           <NavLink
+            to="control/certificates/new"
+            className="navbar__icon--link"
+            isActive={() => path === "/control/certificates/new"}
+          >
+            <span className="navbar__icon--add"></span>
+          </NavLink>
+        </li>
+        <li className="navbar__item">
+          <NavLink
             to="control/tags"
             className="navbar__icon--link"
             isActive={() => path.includes("control/tags")}

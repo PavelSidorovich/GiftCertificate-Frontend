@@ -109,6 +109,17 @@
   margin: 0 auto;
 }
 
+.navbar__icon--add {
+  display: block;
+  width: 36px;
+  height: 36px;
+  background-size: 36px;
+  background-image: url("../../assets/images/plus_24dp.svg");
+  -webkit-filter: invert(100%) sepia(0%) saturate(3153%) hue-rotate(274deg) brightness(85%) contrast(93%);
+          filter: invert(100%) sepia(0%) saturate(3153%) hue-rotate(274deg) brightness(85%) contrast(93%);
+  margin: 0 auto;
+}
+
 .navbar__icon--users {
   display: block;
   width: 36px;

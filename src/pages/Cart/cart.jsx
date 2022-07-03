@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { NotificationManager } from "react-notifications";
+
 import CartList from "../../components/CartList/cart-list";
 import CartSidebar from "../../components/CartSidebar/cart-sidebar";
 import {
-  editUserCart,
+  cartEdited,
+  checkoutCart,
   fetchUserCartById,
   needRefreshEdited,
 } from "../../redux/slices/ordersSlice";
@@ -18,6 +21,22 @@ const Cart = (props) => {
   const totalItems = useSelector((state) => state.orders.totalItems);
   const cart = useSelector((state) => state.orders.cart);
   const userId = props.match.params.id;
+
+  const handleCheckout = () => {
+    dispatch(checkoutCart(userId)).then((res) => {
+      if (res.payload.status === 201) {
+        NotificationManager.success(
+          "Items from cart were purchased successfully"
+        );
+        dispatch(cartEdited({}));
+        dispatch(needRefreshEdited(true));
+      } else if (res.payload.status === 400) {
+        NotificationManager.warning(
+          "You haven't got enough money to make purchase :("
+        );
+      }
+    });
+  };
 
   useEffect(() => {
     if (needRefresh) {
@@ -39,7 +58,11 @@ const Cart = (props) => {
             </div>
             <CartList userId={userId} items={cart.orderItems} />
           </div>
-          <CartSidebar totalPrice={totalPrice} itemCount={totalItems} />
+          <CartSidebar
+            totalPrice={totalPrice}
+            itemCount={totalItems}
+            handleCheckout={handleCheckout}
+          />
         </>
       ) : (
         <div className="cart-page__cart-empty">

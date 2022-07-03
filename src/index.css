@@ -127,6 +127,13 @@ textarea {
   line-height: 3;
 }
 
+
+.form-block textarea,
+.form-block-sm textarea {
+  line-height: normal;
+  padding: 10px 15px;
+}
+
 .form-block input:hover, .form-block-sm input:hover,
 .form-block textarea:hover,
 .form-block-sm textarea:hover,

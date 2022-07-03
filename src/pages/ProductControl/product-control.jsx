@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { WithContext as ReactTags } from "react-tag-input";
+import { NotificationManager } from "react-notifications";
 
 import { templateImage } from "../../constants/Constants";
 import "./product-control.css";
@@ -19,9 +20,6 @@ const ProductControl = (props) => {
   const dispatch = useDispatch();
   const isUpdate = props.match.params.action === "edit";
   const certificate = useSelector((state) => state.certificates.certificate);
-  const controlStatus = useSelector(
-    (state) => state.certificates.controlStatus
-  );
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -31,6 +29,7 @@ const ProductControl = (props) => {
   const [imageObj, setImageObj] = useState(null);
   const [imageAlt, setImageAlt] = useState("template");
   const [fieldErrors, setFieldErrors] = useState({});
+  const [needRedirect, setNeedRedirect] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,7 +46,6 @@ const ProductControl = (props) => {
     const errors = validateProduct(values, isUpdate);
 
     setFieldErrors(errors);
-    console.log(errors);
     if (Object.keys(errors).length === 0) {
       isUpdate
         ? dispatch(
@@ -55,8 +53,23 @@ const ProductControl = (props) => {
               id: certificate.id,
               data: prepareFieldsForUpdate(values),
             })
-          )
-        : dispatch(createCertificate(prepareFieldsForCreation(values)));
+          ).then((res) => {
+            console.log(res);
+            if (res.payload.status === 200) {
+              NotificationManager.success("Coupon was successfully updated");
+              setNeedRedirect(true);
+            } else if (res.payload.status === 400) {
+              NotificationManager.info("Nothing to update", "Info");
+            }
+          })
+        : dispatch(createCertificate(prepareFieldsForCreation(values))).then(
+            (res) => {
+              if (res.payload.status === 201) {
+                NotificationManager.success("Coupon was successfully created");
+                setNeedRedirect(true);
+              }
+            }
+          );
     }
   };
 
@@ -185,9 +198,11 @@ const ProductControl = (props) => {
     }
   }, [certificate]);
 
-  return controlStatus === "succeeded" ? (
-    <Redirect to="/" />
-  ) : (
+  if (needRedirect) {
+    return <Redirect to="/" />;
+  }
+
+  return (
     <div className="certificate-page form__wrap">
       <form onSubmit={handleSubmit}>
         <h2 className="certificate-page__title">

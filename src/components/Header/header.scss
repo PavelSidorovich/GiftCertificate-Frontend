@@ -78,6 +78,10 @@
   @include navbar__icon(url("../../assets/images/tag_24dp.svg"));
 }
 
+.navbar__icon--add {
+  @include navbar__icon(url("../../assets/images/plus_24dp.svg"));
+}
+
 .navbar__icon--users {
   @include navbar__icon(url("../../assets/images/users_24dp.svg"));
 }

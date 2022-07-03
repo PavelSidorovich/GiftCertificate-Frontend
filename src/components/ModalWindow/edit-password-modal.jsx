@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import { NotificationManager } from "react-notifications";
 
-import {
-  changeUserPassword,
-  updateUserById,
-} from "../../redux/slices/userSlice";
+import { changeUserPassword } from "../../redux/slices/userSlice";
 import {
   getFeedback,
   getFieldInputClass,
@@ -40,7 +38,11 @@ const EditPasswordModal = ({ user, isHidden, setIsHidden }) => {
     setFieldErrors(errors);
 
     if (errors.password === "success" && errors.passwordConfirm === "success") {
-      dispatch(changeUserPassword(values));
+      dispatch(changeUserPassword(values)).then((res) => {
+        if (res.payload.status === 204) {
+          NotificationManager.warning("Password was changed", "Warning");
+        }
+      });
       setIsHidden(true);
       dispatch(logout());
     }

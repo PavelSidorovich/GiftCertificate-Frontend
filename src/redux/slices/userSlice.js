@@ -27,7 +27,7 @@ export const updateUserById = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const response = await api.updateUser(user);
-      return response.data;
+      return response;
     } catch (err) {
       if (!err.response) {
         throw err;
@@ -42,7 +42,7 @@ export const changeUserPassword = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const response = await api.changePassword(user);
-      return response.data;
+      return response;
     } catch (err) {
       if (!err.response) {
         throw err;
@@ -74,7 +74,7 @@ const usersSlice = createSlice({
       })
       .addCase(updateUserById.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.user = action.payload;
+        state.user = action.payload.data;
       })
       .addCase(updateUserById.rejected, (state, action) => {
         state.status = "failed";
@@ -86,7 +86,6 @@ const usersSlice = createSlice({
       })
       .addCase(changeUserPassword.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.user = action.payload;
       })
       .addCase(changeUserPassword.rejected, (state, action) => {
         state.status = "failed";

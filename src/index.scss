@@ -117,6 +117,11 @@ textarea {
   line-height: 3;
 }
 
+.form-block textarea {
+  line-height: normal;
+  padding: 10px 15px;
+}
+
 .form-block input:hover,
 .form-block textarea:hover,
 .form-block .file-upload:hover {

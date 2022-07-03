@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { NotificationManager } from "react-notifications";
 
 import {
   getFeedback,
@@ -58,7 +59,11 @@ const SignUp = (props) => {
 
     setFieldErrors(errors);
     if (Object.keys(errors).length === 0) {
-      dispatch(signUp(values));
+      dispatch(signUp(values)).then((res) => {
+        if (res.payload.status === 200) {
+          NotificationManager.success("Successful registration");
+        }
+      });
     }
   };
 

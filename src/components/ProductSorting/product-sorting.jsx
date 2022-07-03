@@ -18,9 +18,8 @@ const ProductSorting = () => {
     dispatch(
       filterEdited({
         ...newFilter,
-        [e.target.getAttribute("aria-label")]: e.target.getAttribute(
-          "aria-details"
-        ),
+        [e.target.getAttribute("aria-label")]:
+          e.target.getAttribute("aria-details"),
       })
     );
     dispatch(reloadContent());

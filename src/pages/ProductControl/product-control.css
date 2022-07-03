@@ -48,6 +48,7 @@
   color: #01a9c1;
   font-weight: unset;
   border: 2px solid #01a9c1;
+  display: block;
 }
 
 .cancel-btn:hover {

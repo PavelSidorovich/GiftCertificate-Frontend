@@ -16,3 +16,4 @@ export { default as EditPasswordModal } from "./ModalWindow/edit-password-modal"
 export { default as InputBlock } from "./InputBlock/input-block";
 export { default as AdminButtons } from "./ProductList/admin-buttons";
 export { default as UserButtons } from "./ProductList/user-buttons";
+export { default as ConfirmModal } from "./ModalWindow/confirm-modal";

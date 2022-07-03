@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { NotificationManager } from "react-notifications";
 
 import { login, logout, setAuthContext } from "../../redux/slices/authSlice";
 import "./auth.css";
@@ -22,7 +23,10 @@ const SignIn = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login({ email: email, password: password })).then(() => {
+    dispatch(login({ email: email, password: password })).then((res) => {
+      if (res.payload.status === 200) {
+        NotificationManager.success("Successful authorization");
+      }
       dispatch(setAuthContext());
     });
   };

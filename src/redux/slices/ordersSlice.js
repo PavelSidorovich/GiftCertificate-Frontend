@@ -31,7 +31,7 @@ export const editUserCart = createAsyncThunk(
   async ({ userId, itemId, amount }, { rejectWithValue }) => {
     try {
       const response = await api.editUserCart(userId, itemId, amount);
-      return response.data;
+      return response;
     } catch (err) {
       if (!err.response) {
         throw err;
@@ -47,6 +47,22 @@ export const removeFromUserCart = createAsyncThunk(
     try {
       const response = await api.removeFromUserCart(userId, itemId);
       return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      return rejectWithValue(err.response);
+    }
+  }
+);
+
+export const checkoutCart = createAsyncThunk(
+  "orders/checkoutCart",
+  async (userId, { rejectWithValue }) => {
+    try {
+      const response = await api.checkoutUserCart(userId);
+      console.log(response);
+      return response;
     } catch (err) {
       if (!err.response) {
         throw err;
@@ -95,6 +111,9 @@ const ordersSlice = createSlice({
     needRefreshEdited(state, action) {
       state.needRefresh = action.payload;
     },
+    cartEdited(state, action) {
+      state.cart = action.payload;
+    },
   },
   extraReducers(builder) {
     builder
@@ -141,4 +160,4 @@ const ordersSlice = createSlice({
 
 export default ordersSlice.reducer;
 
-export const { needRefreshEdited } = ordersSlice.actions;
+export const { needRefreshEdited, cartEdited } = ordersSlice.actions;

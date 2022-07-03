@@ -20,6 +20,12 @@ const Header = () => {
     return isAdmin ? (
       <>
         <li className="navbar__item">
+          <Link to="/control/certificates/new" className="navbar__icon--link">
+            <span className="navbar__icon--add"></span>
+            <span className="icon__text">Coupon</span>
+          </Link>
+        </li>
+        <li className="navbar__item">
           <Link to="/control/tags" className="navbar__icon--link">
             <span className="navbar__icon--tag"></span>
             <span className="icon__text">Tags</span>
