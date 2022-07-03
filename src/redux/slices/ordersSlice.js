@@ -80,6 +80,14 @@ const countItemsAmount = (cart) => {
     : 0;
 };
 
+const compareCartItems = (itemA, itemB) => {
+  if (itemA.id < itemB.id) {
+    return -1;
+  } else if (itemA.id > itemB.id) {
+    return 1;
+  }
+};
+
 const ordersSlice = createSlice({
   name: "orders",
   initialState,
@@ -95,6 +103,7 @@ const ordersSlice = createSlice({
       })
       .addCase(fetchUserCartById.fulfilled, (state, action) => {
         state.status = "succeeded";
+        action.payload.orderItems.sort(compareCartItems);
         state.cart = action.payload;
         state.needRefresh = true;
         refreshCart(action.payload, state);

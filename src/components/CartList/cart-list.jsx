@@ -18,7 +18,6 @@ const CartList = ({ userId, items }) => {
         itemId: e.target.getAttribute("aria-describedby"),
       })
     );
-    console.log(e.target);
   };
 
   const editCartItemAmount = (e, isIncrement) => {
@@ -102,7 +101,7 @@ const CartList = ({ userId, items }) => {
         </div>
       </div>
       <div className="cart__item-price hide-mobile">
-        {item.certificate.price * item.amount} $
+        {(item.certificate.price * item.amount).toFixed(2)} $
       </div>
     </div>
   ));
