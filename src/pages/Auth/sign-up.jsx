@@ -3,26 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { NotificationManager } from "react-notifications";
 
-import {
-  getFeedback,
-  getFieldInputClass,
-  getInputFieldIconClass,
-} from "../../helpers/FormClasses";
+import { handleInputChange } from "../../helpers/FormClasses";
 import { login, setAuthContext, signUp } from "../../redux/slices/authSlice";
 
 import validate from "../../validations/sign-up-validation";
 import "./auth.css";
+import { InputBlock } from "../../components";
 
 const SignUp = (props) => {
   const dispatch = useDispatch();
   const status = useSelector((state) => state.auth.signUpStatus);
   const loginStatus = useSelector((state) => state.auth.loginStatus);
   const error = useSelector((state) => state.auth.error);
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [passwordConfirm, setPasswordConfirm] = useState(null);
-  const [firstName, setFirstName] = useState(null);
-  const [lastName, setLastName] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [fieldErrors, setFieldErrors] = useState({});
 
   const handleChange = (e) => {
@@ -91,96 +88,64 @@ const SignUp = (props) => {
     <div className="sign-in-page form__wrap">
       <form onSubmit={handleSubmit}>
         <h2 className="sign-in-page__title">Register</h2>
-        <div className="form-block">
-          <div className={getFieldInputClass(fieldErrors.email)}>
-            <input
-              id="email"
-              type="email"
-              placeholder="Login"
-              onChange={handleChange}
-            />
-            <span className={getInputFieldIconClass(fieldErrors.email)}></span>
-          </div>
-          <div className="form-block__feedback">
-            <span className="form-block__feedback--invalid">
-              {getFeedback(fieldErrors.email)}
-            </span>
-          </div>
-        </div>
-        <div className="form-block">
-          <div className={getFieldInputClass(fieldErrors.password)}>
-            <input
-              id="password"
-              type="password"
-              placeholder="Password"
-              onChange={handleChange}
-            />
-            <span
-              className={getInputFieldIconClass(fieldErrors.password)}
-            ></span>
-          </div>
-          <div className="form-block__feedback">
-            <span className="form-block__feedback--invalid">
-              {getFeedback(fieldErrors.password)}
-            </span>
-          </div>
-        </div>
-        <div className="form-block">
-          <div className={getFieldInputClass(fieldErrors.passwordConfirm)}>
-            <input
-              id="passwordConfirm"
-              type="password"
-              placeholder="Confirm password"
-              onChange={handleChange}
-            />
-            <span
-              className={getInputFieldIconClass(fieldErrors.passwordConfirm)}
-            ></span>
-          </div>
-          <div className="form-block__feedback">
-            <span className="form-block__feedback--invalid">
-              {getFeedback(fieldErrors.passwordConfirm)}
-            </span>
-          </div>
-        </div>
-        <div className="form-block">
-          <div className={getFieldInputClass(fieldErrors.firstName)}>
-            <input
-              id="firstName"
-              type="text"
-              placeholder="First name"
-              onChange={handleChange}
-              autoComplete="off"
-            />
-            <span
-              className={getInputFieldIconClass(fieldErrors.firstName)}
-            ></span>
-          </div>
-          <div className="form-block__feedback">
-            <span className="form-block__feedback--invalid">
-              {getFeedback(fieldErrors.firstName)}
-            </span>
-          </div>
-        </div>
-        <div className="form-block">
-          <div className={getFieldInputClass(fieldErrors.lastName)}>
-            <input
-              id="lastName"
-              type="text"
-              placeholder="Last name"
-              onChange={handleChange}
-              autoComplete="off"
-            />
-            <span
-              className={getInputFieldIconClass(fieldErrors.firstName)}
-            ></span>
-          </div>
-          <div className="form-block__feedback">
-            <span className="form-block__feedback--invalid">
-              {getFeedback(fieldErrors.lastName)}
-            </span>
-          </div>
-        </div>
+        <InputBlock
+          id="email"
+          type="email"
+          value={email}
+          error={fieldErrors.email}
+          placeholder="Login"
+          autoComplete="on"
+          onChange={(e) =>
+            handleInputChange(e, setEmail, fieldErrors, setFieldErrors)
+          }
+        />
+        <InputBlock
+          id="password"
+          type="password"
+          value={password}
+          placeholder="Password"
+          error={fieldErrors.password}
+          onChange={(e) =>
+            handleInputChange(e, setPassword, fieldErrors, setFieldErrors)
+          }
+        />
+        <InputBlock
+          id="passwordConfirm"
+          type="password"
+          value={passwordConfirm}
+          placeholder="Confirm password"
+          error={fieldErrors.passwordConfirm}
+          onChange={(e) =>
+            handleInputChange(
+              e,
+              setPasswordConfirm,
+              fieldErrors,
+              setFieldErrors
+            )
+          }
+        />
+        <InputBlock
+          id="firstName"
+          type="text"
+          value={firstName}
+          placeholder="First name"
+          error={fieldErrors.firstName}
+          autoComplete="off"
+          onChange={(e) =>
+            handleInputChange(e, setFirstName, fieldErrors, setFieldErrors)
+          }
+        />
+        <InputBlock
+          id="lastName"
+          type="text"
+          value={lastName}
+          placeholder="Last name"
+          error={fieldErrors.lastName}
+          autoComplete="off"
+          onChange={(e) =>
+            handleInputChange(e, setLastName, fieldErrors, setFieldErrors)
+          }
+        />
         <button className="login__btn btn-main-lg">Register</button>
       </form>
       <p className="register-link">
