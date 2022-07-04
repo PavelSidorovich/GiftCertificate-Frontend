@@ -27,6 +27,18 @@ function validateProduct(values, isUpdate) {
 
   if (!isUpdate && values.tags.length === 0) {
     errors.tags = "Add tags";
+  } else if (values.tags && values.tags.length !== 0) {
+    let lengthError = false;
+    values.tags.forEach((tag) => {
+      if (tag.text.length < 3 || tag.text.length > 15) {
+        lengthError = true;
+        errors.tags =
+          "Tag name should be not less than 3 and greater than 15 characters";
+      }
+    });
+    errors.tags = lengthError
+      ? "Tag name should be not less than 3 and greater than 15 characters"
+      : "success";
   } else {
     errors.tags = "success";
   }
