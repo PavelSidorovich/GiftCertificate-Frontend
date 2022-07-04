@@ -12,6 +12,7 @@ import { getFeedback, handleInputChange } from "../../helpers/FormClasses";
 import {
   createCertificate,
   fetchCertificateById,
+  fetchStatusEdited,
   updateCertificate,
 } from "../../redux/slices/certificateSlice";
 import equals from "../../helpers/ArrayHelper";
@@ -54,9 +55,9 @@ const ProductControl = (props) => {
               data: prepareFieldsForUpdate(values),
             })
           ).then((res) => {
-            console.log(res);
             if (res.payload.status === 200) {
               NotificationManager.success("Coupon was successfully updated");
+              dispatch(fetchStatusEdited("idle"));
               setNeedRedirect(true);
             } else if (res.payload.status === 400) {
               NotificationManager.info("Nothing to update", "Info");
@@ -66,7 +67,13 @@ const ProductControl = (props) => {
             (res) => {
               if (res.payload.status === 201) {
                 NotificationManager.success("Coupon was successfully created");
+                dispatch(fetchStatusEdited("idle"));
                 setNeedRedirect(true);
+              } else if (res.payload.status === 409) {
+                NotificationManager.warning(
+                  "Certificate with such name already exists",
+                  "Warning"
+                );
               }
             }
           );

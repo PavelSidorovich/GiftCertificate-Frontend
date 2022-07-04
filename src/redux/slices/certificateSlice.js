@@ -58,7 +58,7 @@ export const createCertificate = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response = await api.createCertificate(data);
-      return response.data;
+      return response;
     } catch (err) {
       if (!err.response) {
         throw err;
@@ -174,6 +174,10 @@ const certificatesSlice = createSlice({
         (cert) => cert.id !== action.payload
       );
     },
+
+    fetchStatusEdited(state, action) {
+      state.status = action.payload;
+    },
   },
   extraReducers(builder) {
     builder
@@ -239,6 +243,7 @@ export const {
   incrementPage,
   reloadContent,
   certificateDeletedById,
+  fetchStatusEdited,
 } = certificatesSlice.actions;
 
 export const selectFilter = (state) => {

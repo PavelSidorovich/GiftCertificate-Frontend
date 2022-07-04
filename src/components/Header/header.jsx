@@ -25,12 +25,12 @@ const Header = () => {
             <span className="icon__text">Coupon</span>
           </Link>
         </li>
-        <li className="navbar__item">
+        {/* <li className="navbar__item">
           <Link to="/control/tags" className="navbar__icon--link">
             <span className="navbar__icon--tag"></span>
             <span className="icon__text">Tags</span>
           </Link>
-        </li>
+        </li> */}
         <li className="navbar__item">
           <Link
             to="/control/users?page=0&size=20"

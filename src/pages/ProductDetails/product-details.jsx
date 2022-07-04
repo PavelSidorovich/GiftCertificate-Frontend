@@ -114,9 +114,16 @@ const ProductDetails = (props) => {
           </div>
         </div>
       </div>
-      <div className="product-page__order hide-desktop">
-        <button className="to-cart-btn btn-main-lg">To cart</button>
-      </div>
+      {isAdmin ? null : (
+        <div className="product-page__order hide-desktop">
+          <button
+            className="to-cart-btn btn-main-lg"
+            onClick={handleToCartButtonClick}
+          >
+            To cart
+          </button>
+        </div>
+      )}
     </>
   ) : (
     <Loading />

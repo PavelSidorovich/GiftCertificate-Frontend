@@ -37,7 +37,7 @@ const ConfirmModal = ({ isHidden, setIsHidden, action, title, message }) => {
               Cancel
             </button>
             <button className="btn-main-lg save-btn" onClick={action}>
-              Save
+              Confirm
             </button>
           </div>
         </div>

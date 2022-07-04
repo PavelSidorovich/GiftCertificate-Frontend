@@ -37,6 +37,8 @@ const BalanceModal = ({ user, isHidden, setIsHidden }) => {
       dispatch(updateUserById(values)).then((res) => {
         if (res.payload.status === 200) {
           NotificationManager.success("Balance was successfully refilled!");
+        } else if (res.payload.status === 500) {
+          NotificationManager.error("Error occured while balance refill!");
         }
       });
       setIsHidden(true);
