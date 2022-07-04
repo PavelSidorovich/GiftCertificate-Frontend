@@ -2,7 +2,12 @@ import React from "react";
 
 import "./cart-sidebar.css";
 
-const CartSidebar = ({ totalPrice, itemCount, handleCheckout }) => {
+const CartSidebar = ({
+  totalPrice,
+  itemCount,
+  handleCheckout,
+  isPurchased,
+}) => {
   return (
     <aside className="cart__sidebar">
       <div className="cart__order-top">
@@ -14,9 +19,11 @@ const CartSidebar = ({ totalPrice, itemCount, handleCheckout }) => {
           <span>Goods, {itemCount} items</span>
           <span>{totalPrice} $</span>
         </div>
-        <button className="btn-order btn-main-lg" onClick={handleCheckout}>
-          Checkout
-        </button>
+        {isPurchased ? null : (
+          <button className="btn-order btn-main-lg" onClick={handleCheckout}>
+            Checkout
+          </button>
+        )}
       </div>
     </aside>
   );

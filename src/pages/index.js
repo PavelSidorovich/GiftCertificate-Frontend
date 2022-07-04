@@ -7,3 +7,4 @@ export { default as Cart } from "./Cart/cart";
 export { default as ProductControl } from "./ProductControl/product-control";
 export { default as Error } from "./Error/error";
 export { default as Users } from "./Users/users";
+export { default as Orders } from "./Orders/orders";

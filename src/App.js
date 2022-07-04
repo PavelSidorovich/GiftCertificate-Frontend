@@ -8,10 +8,12 @@ import {
   Cart,
   Error,
   Home,
+  Orders,
   ProductControl,
   ProductDetails,
   SignIn,
   SignUp,
+  Users,
 } from "./pages/index";
 import { UserRoles } from "./helpers/UserRoles";
 
@@ -40,6 +42,11 @@ export default function App() {
                 requiredRoles={[UserRoles.user]}
               />
               <AuthRoute
+                path="/users/:id/orders/:orderId"
+                component={Cart}
+                requiredRoles={[UserRoles.admin, UserRoles.user]}
+              />
+              <AuthRoute
                 exact
                 path="/users/:id"
                 component={AccountDetails}
@@ -56,6 +63,17 @@ export default function App() {
                 path="/control/certificates/:id/:action"
                 component={ProductControl}
                 requiredRoles={[UserRoles.admin]}
+              />
+              <AuthRoute
+                path="/control/users"
+                component={Users}
+                requiredRoles={[UserRoles.admin]}
+              />
+              <AuthRoute
+                exact
+                path="/users/:id/orders"
+                component={Orders}
+                requiredRoles={[UserRoles.admin, UserRoles.user]}
               />
             </Switch>
           </main>

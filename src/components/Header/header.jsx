@@ -32,7 +32,10 @@ const Header = () => {
           </Link>
         </li>
         <li className="navbar__item">
-          <Link to="/control/users" className="navbar__icon--link">
+          <Link
+            to="/control/users?page=0&size=20"
+            className="navbar__icon--link"
+          >
             <span className="navbar__icon--users"></span>
             <span className="icon__text">Users</span>
           </Link>

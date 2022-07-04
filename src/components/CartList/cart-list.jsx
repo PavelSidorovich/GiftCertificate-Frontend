@@ -8,7 +8,7 @@ import {
   removeFromUserCart,
 } from "../../redux/slices/ordersSlice";
 
-const CartList = ({ userId, items }) => {
+const CartList = ({ userId, items, isPurchased }) => {
   const dispatch = useDispatch();
 
   const handleRemoveItem = (e) => {
@@ -71,34 +71,40 @@ const CartList = ({ userId, items }) => {
       </div>
       <div className="cart__item-controls">
         <div className="count__wrap">
-          <button
-            className="count__minus disabled"
-            onClick={handleItemAmountDecrement}
-          >
-            <span aria-describedby={item.certificate.id}></span>
-          </button>
+          {isPurchased ? null : (
+            <button
+              className="count__minus disabled"
+              onClick={handleItemAmountDecrement}
+            >
+              <span aria-describedby={item.certificate.id}></span>
+            </button>
+          )}
           <input
             type="text"
             maxLength="2"
             className="count__numeric"
-            value={item.amount}
+            value={isPurchased ? "X " + item.amount : item.amount}
             data-id={item.certificate.id}
             readOnly
           />
-          <button className="count__plus" onClick={handleItemAmountIncrement}>
-            <span aria-describedby={item.certificate.id}></span>
-          </button>
+          {isPurchased ? null : (
+            <button className="count__plus" onClick={handleItemAmountIncrement}>
+              <span aria-describedby={item.certificate.id}></span>
+            </button>
+          )}
         </div>
-        <div className="cart__item-btn">
-          <button className="btn__del">
-            <span
-              onClick={handleRemoveItem}
-              aria-describedby={item.certificate.id}
-            >
-              Delete
-            </span>
-          </button>
-        </div>
+        {isPurchased ? null : (
+          <div className="cart__item-btn">
+            <button className="btn__del">
+              <span
+                onClick={handleRemoveItem}
+                aria-describedby={item.certificate.id}
+              >
+                Delete
+              </span>
+            </button>
+          </div>
+        )}
       </div>
       <div className="cart__item-price hide-mobile">
         {(item.certificate.price * item.amount).toFixed(2)} $

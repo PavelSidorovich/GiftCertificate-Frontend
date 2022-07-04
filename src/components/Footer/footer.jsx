@@ -33,7 +33,7 @@ const Footer = () => {
         </li>
         <li className="navbar__item">
           <NavLink
-            to="control/users"
+            to="control/users?page=0&size=20"
             className="navbar__icon--link"
             isActive={() => path.includes("control/users")}
           >

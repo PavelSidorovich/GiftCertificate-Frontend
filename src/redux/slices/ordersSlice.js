@@ -3,13 +3,48 @@ import { api } from "../../services/api/AppApi";
 
 const initialState = {
   cart: {},
+  orders: [],
+  totalOrders: 0,
   totalItems: 0,
   totalPrice: 0,
+  fetchStatus: "idle",
   status: "idle",
   editStatus: "idle",
   error: null,
   needRefresh: true,
 };
+
+export const fetchUserOrders = createAsyncThunk(
+  "orders/fetchUserOrders",
+  async ({ id, params }, { rejectWithValue }) => {
+    try {
+      const response = await api.getUserOrders(id, params);
+      return response;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      return rejectWithValue(err.response);
+    }
+  }
+);
+
+export const fetchUserOrderById = createAsyncThunk(
+  "orders/fetchUserOrderByID",
+  async ({ userId, orderId }, { rejectWithValue }) => {
+    try {
+      const response = await api.getUserOrder(userId, orderId, {
+        truncated: false,
+      });
+      return response;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      return rejectWithValue(err.response);
+    }
+  }
+);
 
 export const fetchUserCartById = createAsyncThunk(
   "orders/fetchUserCartById",
@@ -153,6 +188,32 @@ const ordersSlice = createSlice({
       })
       .addCase(removeFromUserCart.rejected, (state, action) => {
         state.editStatus = "failed";
+        state.error = action.payload.status;
+      })
+      .addCase(fetchUserOrders.pending, (state) => {
+        state.fetchStatus = "loading";
+      })
+      .addCase(fetchUserOrders.fulfilled, (state, action) => {
+        state.fetchStatus = "succeeded";
+        state.orders = action.payload.data.content;
+        state.totalOrders = action.payload.data.totalPages;
+      })
+      .addCase(fetchUserOrders.rejected, (state, action) => {
+        state.fetchStatus = "failed";
+        state.error = action.payload.status;
+      })
+      .addCase(fetchUserOrderById.pending, (state) => {
+        state.fetchStatus = "loading";
+      })
+      .addCase(fetchUserOrderById.fulfilled, (state, action) => {
+        state.fetchStatus = "succeeded";
+        action.payload.data.orderItems.sort(compareCartItems);
+        state.cart = action.payload.data;
+        state.needRefresh = true;
+        refreshCart(action.payload.data, state);
+      })
+      .addCase(fetchUserOrderById.rejected, (state, action) => {
+        state.fetchStatus = "failed";
         state.error = action.payload.status;
       });
   },

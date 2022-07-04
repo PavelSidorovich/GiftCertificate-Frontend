@@ -2,10 +2,28 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "../../services/api/AppApi";
 
 const initialState = {
+  users: [],
+  totalPages: 0,
+  fetchStatus: "idle",
   user: null,
   status: "idle",
   error: null,
 };
+
+export const fetchUsers = createAsyncThunk(
+  "users/fetchUsers",
+  async (params, { rejectWithValue }) => {
+    try {
+      const response = await api.getUsers(params);
+      return response;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      return rejectWithValue(err.response);
+    }
+  }
+);
 
 export const fetchUserById = createAsyncThunk(
   "users/fetchUserById",
@@ -55,7 +73,14 @@ export const changeUserPassword = createAsyncThunk(
 const usersSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {},
+  reducers: {
+    pageEdited(state, action) {
+      state.page = action.payload;
+    },
+    sizeEdited(state, action) {
+      state.size = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchUserById.pending, (state, action) => {
@@ -80,7 +105,6 @@ const usersSlice = createSlice({
         state.status = "failed";
         state.error = action.payload.status;
       })
-
       .addCase(changeUserPassword.pending, (state, action) => {
         state.status = "loading";
       })
@@ -89,6 +113,18 @@ const usersSlice = createSlice({
       })
       .addCase(changeUserPassword.rejected, (state, action) => {
         state.status = "failed";
+        state.error = action.payload.status;
+      })
+      .addCase(fetchUsers.pending, (state, action) => {
+        state.fetchStatus = "loading";
+      })
+      .addCase(fetchUsers.fulfilled, (state, action) => {
+        state.fetchStatus = "succeeded";
+        state.users = action.payload.data.content;
+        state.totalPages = action.payload.data.totalPages;
+      })
+      .addCase(fetchUsers.rejected, (state, action) => {
+        state.fetchStatus = "failed";
         state.error = action.payload.status;
       });
   },

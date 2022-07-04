@@ -9,18 +9,24 @@ import {
   cartEdited,
   checkoutCart,
   fetchUserCartById,
+  fetchUserOrderById,
+  fetchUserOrders,
   needRefreshEdited,
 } from "../../redux/slices/ordersSlice";
 
 import "./cart.css";
 
 const Cart = (props) => {
+  console.log(props);
   const dispatch = useDispatch();
   const needRefresh = useSelector((state) => state.orders.needRefresh);
   const totalPrice = useSelector((state) => state.orders.totalPrice);
   const totalItems = useSelector((state) => state.orders.totalItems);
   const cart = useSelector((state) => state.orders.cart);
   const userId = props.match.params.id;
+  const orderId = props.match.params.orderId || false;
+
+  console.log(cart);
 
   const handleCheckout = () => {
     dispatch(checkoutCart(userId)).then((res) => {
@@ -39,7 +45,9 @@ const Cart = (props) => {
   };
 
   useEffect(() => {
-    if (needRefresh) {
+    if (orderId) {
+      dispatch(fetchUserOrderById({ userId: userId, orderId: orderId }));
+    } else if (needRefresh) {
       dispatch(fetchUserCartById(userId)).then(() =>
         dispatch(needRefreshEdited(false))
       );
@@ -53,15 +61,20 @@ const Cart = (props) => {
           <div className="cart__content">
             <div className="cart__header-tabs">
               <h1 className="cart-section__header" data-count={totalItems}>
-                Cart
+                {orderId ? "Order" : "Cart"}
               </h1>
             </div>
-            <CartList userId={userId} items={cart.orderItems} />
+            <CartList
+              userId={userId}
+              items={cart.orderItems}
+              isPurchased={orderId}
+            />
           </div>
           <CartSidebar
             totalPrice={totalPrice}
             itemCount={totalItems}
             handleCheckout={handleCheckout}
+            isPurchased={orderId}
           />
         </>
       ) : (

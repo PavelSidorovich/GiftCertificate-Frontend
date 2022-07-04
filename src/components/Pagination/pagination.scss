@@ -1,0 +1,24 @@
+@import "../../globals";
+
+.page__controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.page__controls span {
+  color: $color-dark-grey;
+  font-weight: 300;
+}
+
+.page__controls a {
+  margin-left: 7px;
+}
+
+.page-number {
+  border-radius: 4px;
+}
+
+.page-number--active {
+  color: $color-blue-3;
+}

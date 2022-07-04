@@ -1,64 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+
+import Pagination from "../../components/Pagination/pagination";
+import UserList from "../../components/UserList/user-list";
+import { fetchUsers } from "../../redux/slices/userSlice";
+
+import "./users.css";
 
 const Users = () => {
+  const search = useLocation().search;
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.users.users);
+  const page = new URLSearchParams(search).get("page") || 0;
+  const size = new URLSearchParams(search).get("size") || 0;
+  const totalPages = useSelector((state) => state.users.totalPages);
+  const [needRefresh, setNeedRefresh] = useState(false);
+
+  useEffect(() => {
+    dispatch(fetchUsers({ page: page, size: size }));
+
+    if (needRefresh) {
+      setNeedRefresh(false);
+    }
+  }, [dispatch, page, size, needRefresh]);
+
   return (
     <div class="users-page">
       <div class="users-page__header-tabs">
-        <h1 class="users-page__header" data-count="2">
-          Users
-        </h1>
+        <h1 class="users-page__header">Users</h1>
       </div>
-      <table class="users-table">
-        <tbody>
-          <tr>
-            <th>Email</th>
-            <th class="hide-mobile">First name</th>
-            <th class="hide-mobile">Last name</th>
-            <th>Status</th>
-            <th></th>
-          </tr>
-          <tr>
-            <td>pavsid2001@mail.ru</td>
-            <td class="hide-mobile">Pavel</td>
-            <td class="hide-mobile">Sidorovich</td>
-            <td>
-              <button class="status-btn-active">Active</button>
-            </td>
-            <td>
-              <a>Orders</a>
-            </td>
-          </tr>
-          <tr>
-            <td>pavsid2001@mail.ru</td>
-            <td class="hide-mobile">Pavel</td>
-            <td class="hide-mobile">Sidorovich</td>
-            <td>
-              <button class="status-btn-inactive">Blocked</button>
-            </td>
-            <td>
-              <a>Orders</a>
-            </td>
-          </tr>
-          <tr>
-            <td>pavsid2001@mail.ru</td>
-            <td class="hide-mobile">Pavel</td>
-            <td class="hide-mobile">Sidorovich</td>
-            <td>
-              <button class="status-btn-active">Active</button>
-            </td>
-            <td>
-              <a>Orders</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="page__controls">
-        <span>Pages: </span>
-        <a class="page-number">1</a>
-        <a class="page-number">2</a>
-        <a>...</a>
-        <a class="page-number">23</a>
-      </div>
+      <UserList users={users} setNeedRefresh={setNeedRefresh} />
+      <Pagination
+        url="/control/users"
+        totalPages={totalPages}
+        currentPage={page}
+        pageSize={size}
+      />
     </div>
   );
 };
