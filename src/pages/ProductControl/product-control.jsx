@@ -177,11 +177,26 @@ const ProductControl = (props) => {
     return data;
   };
 
+  const resetInputs = () => {
+    setName("");
+    setDescription("");
+    setDuration("");
+    setPrice("");
+    setImage(templateImage);
+    setTags([]);
+  };
+
   useEffect(() => {
     if (isUpdate) {
       dispatch(fetchCertificateById(props.match.params.id));
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    if (!isUpdate) {
+      resetInputs();
+    }
+  }, [isUpdate]);
 
   useEffect(() => {
     if (certificate) {
