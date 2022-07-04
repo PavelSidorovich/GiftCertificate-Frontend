@@ -54,7 +54,7 @@ const ProductDetails = (props) => {
         </div>
         <div className="product-page__grid">
           <div className="product-page__image">
-            <img src={certificate.imageUrl} />
+            <img src={certificate.imageUrl} alt={certificate.name} />
           </div>
           <div className="product-page__aside-container">
             <div className="product-page__price">
