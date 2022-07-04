@@ -34,7 +34,6 @@ export default function App() {
                 path="/certificates/:id"
                 component={ProductDetails}
               />
-              <Error path="/error" component={Error} />
 
               <AuthRoute
                 path="/users/:id/cart/"
@@ -75,6 +74,7 @@ export default function App() {
                 component={Orders}
                 requiredRoles={[UserRoles.admin, UserRoles.user]}
               />
+              <Route path="*" component={Error} />
             </Switch>
           </main>
           <Footer />
