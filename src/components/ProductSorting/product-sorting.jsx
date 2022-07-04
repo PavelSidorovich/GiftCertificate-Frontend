@@ -19,7 +19,7 @@ const ProductSorting = () => {
       filterEdited({
         ...newFilter,
         [e.target.getAttribute("aria-label")]:
-          e.target.getAttribute("aria-details"),
+          e.target.getAttribute("sort-type"),
       })
     );
     dispatch(reloadContent());
@@ -48,11 +48,11 @@ const ProductSorting = () => {
 
     const activeSorting = sortByName
       ? document.querySelector(
-          `.select-filter__item[aria-label='sortByName'][aria-details='${sortByName}']`
+          `.select-filter__item[aria-label='sortByName'][sort-type='${sortByName}']`
         )
       : sortByCreateDate
       ? document.querySelector(
-          `.select-filter__item[aria-label='sortByCreateDate'][aria-details='${sortByCreateDate}']`
+          `.select-filter__item[aria-label='sortByCreateDate'][sort-type='${sortByCreateDate}']`
         )
       : null;
     if (activeSorting) {
@@ -77,7 +77,7 @@ const ProductSorting = () => {
             <button
               className="select-filter__item"
               aria-label="sortByCreateDate"
-              aria-details="ASC"
+              sort-type="ASC"
               onClick={handleSortingChange}
             >
               By update asc
@@ -85,7 +85,7 @@ const ProductSorting = () => {
             <button
               className="select-filter__item"
               aria-label="sortByCreateDate"
-              aria-details="DESC"
+              sort-type="DESC"
               onClick={handleSortingChange}
             >
               By update desc
@@ -93,7 +93,7 @@ const ProductSorting = () => {
             <button
               className="select-filter__item"
               aria-label="sortByName"
-              aria-details="ASC"
+              sort-type="ASC"
               onClick={handleSortingChange}
             >
               By name asc
@@ -101,7 +101,7 @@ const ProductSorting = () => {
             <button
               className="select-filter__item"
               aria-label="sortByName"
-              aria-details="DESC"
+              sort-type="DESC"
               onClick={handleSortingChange}
             >
               By name desc
