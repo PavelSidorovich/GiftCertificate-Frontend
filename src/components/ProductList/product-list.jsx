@@ -18,10 +18,6 @@ import { useState } from "react";
 const ProductList = (props) => {
   const dispatch = useDispatch();
   const userid = useSelector(selectId);
-  const cartEditStatus = useSelector((state) => state.orders.editStatus);
-  const controlStatus = useSelector(
-    (state) => state.certificates.controlStatus
-  );
   const isAdmin = useSelector((state) => state.auth.isAdmin);
   const [confirmModalIsHidden, setConfirmModalIsHidden] = useState(true);
   const [certificateId, setCertificateId] = useState(null);

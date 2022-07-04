@@ -70,7 +70,7 @@ export const createCertificate = createAsyncThunk(
 
 export const updateCertificate = createAsyncThunk(
   "certificates/updateCertificate",
-  async ({ id: id, data: data }, { rejectWithValue }) => {
+  async ({ id, data }, { rejectWithValue }) => {
     try {
       const response = await api.updateCertificate(id, data);
       return response;

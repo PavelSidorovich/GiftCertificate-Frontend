@@ -22,26 +22,6 @@ const SignUp = (props) => {
   const [lastName, setLastName] = useState("");
   const [fieldErrors, setFieldErrors] = useState({});
 
-  const handleChange = (e) => {
-    switch (e.target.id) {
-      case "email":
-        setEmail(e.target.value);
-        break;
-      case "password":
-        setPassword(e.target.value);
-        break;
-      case "passwordConfirm":
-        setPasswordConfirm(e.target.value);
-        break;
-      case "firstName":
-        setFirstName(e.target.value);
-        break;
-      case "lastName":
-        setLastName(e.target.value);
-        break;
-    }
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 

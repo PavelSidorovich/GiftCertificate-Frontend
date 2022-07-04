@@ -121,7 +121,7 @@ const ProductControl = (props) => {
 
   const prepareFieldsForCreation = (values) => {
     const data = new FormData();
-    const certificateToCreate = new Object();
+    const certificateToCreate = {};
 
     certificateToCreate.name = values.name;
     certificateToCreate.description = values.description;
@@ -146,7 +146,7 @@ const ProductControl = (props) => {
 
   const prepareFieldsForUpdate = (values) => {
     const data = new FormData();
-    const certificateDataToUpdate = new Object();
+    const certificateDataToUpdate = {};
     const tagsToUpdate = tags.map((tag) => tag.text);
     const currentTags = certificate.tags.map((tag) => tag.name);
 
@@ -237,10 +237,9 @@ const ProductControl = (props) => {
               <label htmlFor="description">Description</label>
               <textarea
                 id="description"
+                defaultValue={description}
                 onChange={(e) => setDescription(e.target.value)}
-              >
-                {description}
-              </textarea>
+              ></textarea>
             </div>
             <InputBlock
               id="duration"
@@ -258,7 +257,7 @@ const ProductControl = (props) => {
               type="number"
               label="Price, $"
               value={price}
-              min="1"
+              min="0"
               error={fieldErrors.price}
               onChange={(e) =>
                 handleInputChange(e, setPrice, fieldErrors, setFieldErrors)
