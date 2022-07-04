@@ -1,0 +1,74 @@
+%page {
+  margin: 1em 0 2em 0;
+}
+
+%page__title {
+  font-size: 23px;
+  margin-bottom: 20px;
+}
+
+%page__element {
+  padding: 0 1em 0 1em;
+}
+
+%page__header-tabs {
+  @extend %page__element;
+  display: flex;
+}
+
+%page__header {
+  position: relative;
+}
+
+%page__header::after {
+  position: absolute;
+  left: calc(100% + 4px);
+  content: attr(data-count);
+  font-size: 18px;
+}
+
+%block-btn {
+  width: 100%;
+  margin-top: 20px;
+}
+
+%description {
+  margin-bottom: 10px;
+  text-align: justify;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+%name {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+@mixin icon($image, $size: 24px, $filter: none, $display: block) {
+  display: $display;
+  width: $size;
+  height: $size;
+  background-size: $size;
+  background-image: $image;
+  filter: $filter;
+}
+
+@media only screen and (min-width: 961px) {
+  %page {
+    margin: 2em;
+  }
+
+  %page__element {
+    padding: 0;
+  }
+
+  %shadow-box {
+    padding: 40px;
+    margin: 30px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+}

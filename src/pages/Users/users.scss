@@ -1,0 +1,60 @@
+@import "../../common";
+@import "../../globals";
+
+.users-page {
+  @extend %page;
+  @extend %page__element;
+}
+
+.users-page__header-tabs {
+  @extend %page__header-tabs;
+  padding: unset;
+  margin-bottom: 16px;
+}
+
+.users-page__header {
+  @extend %page__header;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.users-table th,
+.users-table td {
+  border: 1px solid $color-light-grey;
+  padding: 8px;
+}
+
+@mixin status-btn($bg-color, $border-color) {
+  background-color: $bg-color;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.status-btn-active {
+  @include status-btn($color-success, $color-success-dark);
+  color: $color-white;
+}
+
+.status-btn-active:hover {
+  background-color: $color-success-dark;
+}
+
+.status-btn-inactive {
+  @include status-btn($color-warning, $color-warning-dark);
+}
+
+.status-btn-inactive:hover {
+  background-color: $color-warning-dark;
+}
+
+.users-table tr:nth-child(even) {
+  background-color: $color-lightest-grey;
+}
+
+.users-table tr:hover {
+  background-color: $color-grey;
+}

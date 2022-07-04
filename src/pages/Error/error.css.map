@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AAGA,ACHA,WDGW,CCHL;EACJ,MAAM,EAAE,WAAW;CACpB;;ADCD,ACMA,WDNW,CCMI;EACb,OAAO,EAAE,WAAW;CACrB;;AA+CD,MAAM,MAAM,MAAM,MAAM,SAAS,EAAE,KAAK;EDvDxC,ACHA,WDGW,CCwDH;IACJ,MAAM,EAAE,GAAG;GACZ;ED1DH,ACMA,WDNW,CC4DM;IACb,OAAO,EAAE,CAAC;GACX;;;ADzDH,AAAA,mBAAmB,CAAC;EAClB,SAAS,EAAE,IAAI;CAChB;;AAED,AAAA,iBAAiB,CAAC;EAChB,SAAS,EAAE,IAAI;EACf,aAAa,EAAE,IAAI;CACpB",
+    "sources": [
+        "error.scss",
+        "../../_common.scss",
+        "../../_globals.scss"
+    ],
+    "names": [],
+    "file": "error.css"
+}

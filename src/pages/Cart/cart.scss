@@ -1,0 +1,264 @@
+@import "../../common";
+@import "../../globals";
+
+.cart-page {
+  @extend %page;
+  display: flex;
+  flex-direction: column;
+  margin: 2em 0;
+}
+
+.cart-page__cart-empty {
+  @extend %page__element;
+}
+
+.cart__header-tabs {
+  @extend %page__header-tabs;
+}
+
+.cart-section__header {
+  @extend %page__header;
+}
+
+.cart__item-wrap {
+  @extend %page__element;
+  margin-top: 16px;
+}
+
+.cart__item {
+  display: flex;
+  border-top: 1px solid $color-lightest-grey;
+  padding-top: 16px;
+}
+
+.cart__item-wrap:last-of-type {
+  margin-bottom: 16px;
+}
+
+.cart__item-img {
+  margin-right: 12px;
+  width: 140px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: rgba(41, 43, 83, 0.03);
+}
+
+.cart__item-img img {
+  vertical-align: middle;
+}
+
+.cart__item-img::before {
+  content: "";
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.cart__item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart__item-name {
+  @extend %name;
+}
+
+.cart-empty__text {
+  margin-bottom: 28px;
+  color: $color-dark-grey;
+}
+
+.cart__item-price {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.cart__item-description {
+  @extend %description;
+}
+
+.cart__item-properties {
+  color: $color-dark-grey;
+  font-size: 14px;
+}
+
+.cart__item-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+
+.count__numeric {
+  width: 24px;
+  background-color: transparent;
+  border: none;
+  text-align: center;
+}
+
+.count__wrap {
+  display: flex;
+}
+
+.count__minus span {
+  @include icon(url("../../assets/images/remove_24dp.svg"), 26px, $filter-blue);
+}
+
+.count__plus span {
+  @include icon(url("../../assets/images/add_24dp.svg"), 26px, $filter-blue);
+}
+
+.count__plus.disabled span,
+.count__minus.disabled span {
+  filter: $filter-grey;
+}
+
+.cart__item-btn {
+  display: flex;
+}
+
+.btn__del {
+  display: inline-block;
+  padding: 9px;
+  margin: -9px;
+}
+
+.btn__del span {
+  @include icon(url("../../assets/images/delete_24dp.svg"), 26px, $filter-grey);
+  font-size: 0;
+}
+
+.cart__sidebar {
+  @extend %page__element;
+  padding: 16px;
+  border-top: 10px solid $color-lightest-grey;
+}
+
+.top__total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.top__count {
+  @extend .top__total;
+  color: $color-dark-grey;
+  font-weight: unset;
+  font-size: unset;
+  margin-top: 8px;
+}
+
+.btn-order {
+  width: 100%;
+  font-weight: 600;
+  font-size: 18px;
+  margin-top: 8px;
+}
+
+@media only screen and (min-width: 961px) {
+  %box {
+    padding: 24px;
+  }
+
+  .cart-page {
+    margin: 2rem;
+    position: relative;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .cart__content {
+    @extend %shadow-box;
+    @extend %box;
+    width: calc(100% / 12 * 9 - 40px);
+    margin: 0 40px 0 0;
+  }
+
+  .cart__sidebar {
+    @extend %shadow-box;
+    @extend %box;
+    margin: unset;
+    width: calc(100% / 12 * 3);
+    border-top: unset;
+    position: sticky;
+    top: 10px;
+  }
+
+  .cart__header-tabs {
+    padding-bottom: 16px;
+    border-bottom: 1px solid $color-lightest-grey;
+  }
+
+  .cart__item-wrap {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 16px;
+  }
+
+  .cart__item {
+    flex: 1;
+    border: unset;
+    padding-top: unset;
+    margin-right: 40px;
+  }
+
+  .cart__item-info {
+    width: calc(100% - 80px - 16px);
+  }
+
+  .count__minus span {
+    @include icon(
+      url("../../assets/images/remove_24dp.svg"),
+      40px,
+      $filter-blue
+    );
+  }
+
+  .count__plus span {
+    @include icon(url("../../assets/images/add_24dp.svg"), 40px, $filter-blue);
+  }
+
+  .btn__del {
+    text-decoration: underline dashed;
+    text-underline-offset: 3px;
+  }
+
+  .cart__item-img {
+    width: 200px;
+  }
+
+  .cart__item-wrap:hover .btn__del span {
+    opacity: 1;
+    color: $color-dark-grey;
+  }
+
+  .cart__item-wrap:hover .btn__del:hover {
+    color: $color-blue-4;
+  }
+
+  .btn__del span {
+    opacity: 0;
+    font-size: 14px;
+    background: none;
+    width: unset;
+  }
+
+  .cart__item-controls {
+    margin: 0;
+    width: 180px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cart__item-price {
+    width: 195px;
+    text-align: right;
+    font-size: 24px;
+  }
+
+  .cart__item-btn {
+    margin-top: 10px;
+  }
+}

@@ -1,0 +1,66 @@
+.catalog-page {
+  margin: 1em 0 2em 0;
+}
+
+.catalog-page {
+  padding: 0 1em 0 1em;
+}
+
+@media only screen and (min-width: 961px) {
+  .catalog-page {
+    margin: 2em;
+  }
+  .catalog-page {
+    padding: 0;
+  }
+}
+
+.catalog-page__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.to-top-btn {
+  width: 40px;
+  height: 40px;
+  background-color: #01a9c1;
+  border-radius: 50%;
+  position: fixed;
+  right: 24px;
+  bottom: 60px;
+}
+
+.to-top-btn span {
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-size: 40px;
+  background-image: url("../../assets/images/up_24dp.svg");
+  -webkit-filter: invert(95%) sepia(52%) saturate(1860%) hue-rotate(177deg) brightness(123%) contrast(92%);
+          filter: invert(95%) sepia(52%) saturate(1860%) hue-rotate(177deg) brightness(123%) contrast(92%);
+}
+
+@media only screen and (min-width: 961px) {
+  .catalog-page {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+  }
+  .catalog-page__main {
+    width: calc(100% - 300px);
+  }
+  .to-top-btn {
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    bottom: 24px;
+  }
+}
+/*# sourceMappingURL=home.css.map */

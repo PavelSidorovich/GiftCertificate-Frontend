@@ -1,0 +1,120 @@
+@import "../../globals";
+
+.footer {
+  color: $color-white;
+  background-color: $color-blue-3;
+  padding: 16px;
+  padding-bottom: 70px;
+  position: relative;
+}
+
+.footer__nav {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.footer__header {
+  margin: 0 0 20px;
+}
+
+.footer__list {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.footer__item {
+  margin: 0 4px;
+}
+
+.footer__item a {
+  color: $color-blue-1;
+  display: block;
+  font-size: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  background-position: center;
+  background-size: 30px;
+  background-repeat: no-repeat;
+}
+
+%footer__icon {
+  filter: $filter-white;
+}
+
+.footer .icon-vk {
+  @extend %footer__icon;
+  background-image: url("../../assets/images/vkontakte_24dp.svg");
+}
+
+.footer .icon-tg {
+  @extend %footer__icon;
+  background-image: url("../../assets/images/telegram_24dp.svg");
+}
+
+.footer .icon-inst {
+  @extend %footer__icon;
+  background-image: url("../../assets/images/instagram_24dp.svg");
+}
+
+.footer .icon-li {
+  @extend %footer__icon;
+  background-image: url("../../assets/images/linkedin_24dp.svg");
+}
+
+.footer__add-info {
+  display: flex;
+  justify-content: center;
+}
+
+.footer__copyrights {
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media only screen and (min-width: 961px) {
+  .footer {
+    padding: 50px 0 30px 0;
+  }
+
+  .footer::before {
+    content: "";
+    height: 24px;
+    background-color: $color-white;
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    border-radius: 0 0 24px 24px;
+  }
+
+  .footer__container {
+    padding: 0 32px;
+  }
+
+  .footer__list-wrap {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer__list {
+    justify-content: unset;
+    flex-direction: column;
+  }
+
+  .footer__item {
+    margin: 0 0 0 0;
+  }
+
+  .footer .footer__item a {
+    filter: none;
+    background: 0 0;
+    font-size: 18px;
+  }
+
+  .footer .footer__item a:hover {
+    color: $color-white;
+  }
+}

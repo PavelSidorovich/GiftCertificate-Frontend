@@ -1,0 +1,33 @@
+@import "../../common";
+@import "../../globals";
+
+.sign-in-page {
+  @extend %page;
+  @extend %page__element;
+}
+
+.sign-in-page__title {
+  @extend %page__title;
+}
+
+.login__btn {
+  @extend %block-btn;
+}
+
+.register-link {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.login__error-msg {
+  color: $color-danger;
+  text-align: center;
+  font-weight: 700;
+}
+
+@media only screen and (min-width: 961px) {
+  .sign-in-page {
+    @extend %shadow-box;
+    width: 420px;
+  }
+}

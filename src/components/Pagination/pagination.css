@@ -1,0 +1,27 @@
+.page__controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 16px;
+}
+
+.page__controls span {
+  color: #8b8b8b;
+  font-weight: 300;
+}
+
+.page__controls a {
+  margin-left: 7px;
+}
+
+.page-number {
+  border-radius: 4px;
+}
+
+.page-number--active {
+  color: #027495;
+}
+/*# sourceMappingURL=pagination.css.map */

@@ -1,0 +1,44 @@
+$font-stack: Helvetica, sans-serif;
+
+$color-primary: #000000;
+$color-success: #28a745;
+$color-success-dark: #1f8838;
+$color-warning: #eab000;
+$color-warning-dark: #ce9c09;
+$color-danger: #dc3545;
+$color-danger-dark: #bd1120;
+$color-info: #17a2b8;
+$color-info-dark: #138b9e;
+$color-white: #f4f5f5;
+$color-blue-1: #bad6db;
+$color-blue-2: #01a9c1;
+$color-blue-3: #027495;
+$color-blue-4: #051f34;
+$color-lightest-grey: #e8e8e8;
+$color-light-grey: #d3d3d3;
+$color-grey: #bababa;
+$color-dark-grey: #8b8b8b;
+$color-pink: #f1989a;
+
+$filter-white: invert(95%) sepia(52%) saturate(1860%) hue-rotate(177deg)
+  brightness(123%) contrast(92%);
+$filter-light-grey: invert(100%) sepia(0%) saturate(3153%) hue-rotate(274deg)
+  brightness(85%) contrast(93%);
+$filter-blue: invert(49%) sepia(41%) saturate(4267%) hue-rotate(155deg)
+  brightness(97%) contrast(99%);
+$filter-blue-3: invert(22%) sepia(70%) saturate(3268%) hue-rotate(176deg)
+  brightness(94%) contrast(98%);
+$filter-grey: invert(83%) sepia(6%) saturate(0%) hue-rotate(198deg)
+  brightness(90%) contrast(90%);
+$filter-grey-dark: invert(51%) sepia(28%) saturate(0%) hue-rotate(233deg)
+  brightness(101%) contrast(91%);
+$filter-danger: invert(53%) sepia(88%) saturate(5907%) hue-rotate(334deg)
+  brightness(88%) contrast(97%);
+$filter-danger-dark: invert(21%) sepia(79%) saturate(3085%) hue-rotate(341deg)
+  brightness(72%) contrast(109%);
+$filter-warning: invert(70%) sepia(13%) saturate(5118%) hue-rotate(7deg)
+  brightness(100%) contrast(101%);
+$filter-warning-dark: invert(70%) sepia(15%) saturate(4746%) hue-rotate(6deg)
+  brightness(90%) contrast(93%);
+$filter-success: invert(48%) sepia(63%) saturate(694%) hue-rotate(83deg)
+  brightness(96%) contrast(74%);

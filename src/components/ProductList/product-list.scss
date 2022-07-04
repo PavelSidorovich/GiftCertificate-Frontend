@@ -1,0 +1,117 @@
+@import "../../common";
+@import "../../globals";
+
+.product-card {
+  width: calc(100% / 2 - 8px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+%card-section {
+  padding: 5px;
+}
+
+.product-card__body {
+  @extend %card-section;
+}
+
+.product-card__name {
+  @extend %name;
+  margin-bottom: 5px;
+}
+
+.product-card__description {
+  @extend %description;
+  -webkit-line-clamp: 2;
+  font-size: 14px;
+  color: $color-dark-grey;
+}
+
+.product-card__bottom {
+  @extend %card-section;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid $color-lightest-grey;
+  padding-top: 5px;
+}
+
+.product-card__price {
+  @extend %name;
+  margin: unset;
+}
+
+.no-items-title {
+  margin: 0 16px;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.product-card__admin-buttons--edit {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.product-card__admin-buttons--edit span {
+  @include icon(
+    url("../../assets/images/edit_24dp.svg"),
+    24px,
+    $filter-warning,
+    inline-block
+  );
+}
+
+.product-card__admin-buttons--edit:hover span {
+  @include icon(
+    url("../../assets/images/edit_24dp.svg"),
+    24px,
+    $filter-warning-dark,
+    inline-block
+  );
+}
+
+.product-card__admin-buttons--delete:hover span {
+  @include icon(
+    url("../../assets/images/delete_24dp.svg"),
+    24px,
+    $filter-danger-dark,
+    inline-block
+  );
+}
+
+.product-card__admin-buttons--delete span {
+  @include icon(
+    url("../../assets/images/delete_24dp.svg"),
+    24px,
+    $filter-danger,
+    inline-block
+  );
+}
+
+@media only screen and (min-width: 961px) {
+  .product-card {
+    width: 247px;
+    margin: 0 calc((100% - 504px) / 2.001) 32px 0;
+    margin-right: 16px;
+    margin-left: 16px;
+  }
+
+  .product-card:hover {
+    box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.4);
+  }
+
+  .product-card__name {
+    font-size: 18px;
+  }
+
+  .product-card__description {
+    -webkit-line-clamp: 3;
+    font-size: 16px;
+  }
+
+  .product-card__price {
+    font-size: 18px;
+  }
+}

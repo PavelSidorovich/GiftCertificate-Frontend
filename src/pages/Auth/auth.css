@@ -1,0 +1,51 @@
+.sign-in-page {
+  margin: 1em 0 2em 0;
+}
+
+.sign-in-page__title {
+  font-size: 23px;
+  margin-bottom: 20px;
+}
+
+.sign-in-page {
+  padding: 0 1em 0 1em;
+}
+
+.login__btn {
+  width: 100%;
+  margin-top: 20px;
+}
+
+@media only screen and (min-width: 961px) {
+  .sign-in-page {
+    margin: 2em;
+  }
+  .sign-in-page {
+    padding: 0;
+  }
+  .sign-in-page {
+    padding: 40px;
+    margin: 30px auto;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.register-link {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.login__error-msg {
+  color: #dc3545;
+  text-align: center;
+  font-weight: 700;
+}
+
+@media only screen and (min-width: 961px) {
+  .sign-in-page {
+    width: 420px;
+  }
+}
+/*# sourceMappingURL=auth.css.map */

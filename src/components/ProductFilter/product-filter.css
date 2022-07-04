@@ -1,0 +1,105 @@
+.filter__content, .filter__bottom {
+  padding: 0 1em 0 1em;
+}
+
+.filter-btn--apply, .filter-btn--reset {
+  width: 100%;
+  margin-top: 20px;
+}
+
+@media only screen and (min-width: 961px) {
+  .filter__content, .filter__bottom {
+    padding: 0;
+  }
+}
+
+.catalog-page__filter {
+  z-index: 20;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  height: 100vh;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #f4f5f5;
+  overflow-y: auto;
+}
+
+.filter__header {
+  padding: 16px;
+  text-align: center;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.filter__content {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex: 1;
+      flex: 1;
+  margin: 16px 0;
+}
+
+.filter__title {
+  font-size: 18px;
+}
+
+.filter__bottom {
+  position: fixed;
+  bottom: 45px;
+  width: 100%;
+  padding-bottom: 16px;
+  -webkit-box-shadow: 0 -20px 15px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 -20px 15px rgba(0, 0, 0, 0.05);
+  background-color: #f4f5f5;
+}
+
+.filter-btn--reset {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #8b8b8b;
+  vertical-align: center;
+}
+
+.filter-btn--reset::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-size: 20px;
+  background-image: url("../../assets/images/close_24dp.svg");
+  -webkit-filter: invert(51%) sepia(28%) saturate(0%) hue-rotate(233deg) brightness(101%) contrast(91%);
+          filter: invert(51%) sepia(28%) saturate(0%) hue-rotate(233deg) brightness(101%) contrast(91%);
+}
+
+@media only screen and (min-width: 961px) {
+  .catalog-page__filter {
+    width: 256px;
+    margin-right: 44px;
+    z-index: unset;
+    position: static;
+    overflow-y: unset;
+  }
+  .filter__bottom {
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+/*# sourceMappingURL=product-filter.css.map */

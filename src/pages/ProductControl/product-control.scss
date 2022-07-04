@@ -1,0 +1,127 @@
+@import "../../common";
+@import "../../globals";
+
+.certificate-page {
+  @extend %page;
+  @extend %page__element;
+}
+
+.certificate-page__title {
+  @extend %page__title;
+}
+
+.save-btn {
+  @extend %block-btn;
+}
+
+.certificate-img {
+  border-radius: 8px 8px 0 0;
+}
+
+.certificate-img-label {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.cancel-btn {
+  @extend %block-btn;
+  margin-right: 20px;
+  text-align: center;
+  background-color: transparent;
+  color: $color-blue-2;
+  font-weight: unset;
+  border: 2px solid $color-blue-2;
+  display: block;
+}
+
+.cancel-btn:hover {
+  background-color: transparent;
+  border: 2px solid $color-blue-3;
+  color: $color-blue-3;
+}
+
+.ReactTags__tagInputField {
+  width: 100%;
+}
+
+.ReactTags__tag {
+  color: $color-blue-2;
+  padding: 5px 10px;
+}
+
+.ReactTags__tag::before {
+  content: "#";
+}
+
+/* Styles for the input */
+
+.ReactTags__tagInput input.ReactTags__tagInputField,
+.ReactTags__tagInput input.ReactTags__tagInputField:focus {
+  width: 100%;
+}
+
+.ReactTags__editTagInput {
+  display: inline-flex;
+}
+
+.ReactTags__selected {
+  margin-top: 5px;
+}
+
+/* Styles for selected tags */
+.ReactTags__selected span.ReactTags__tag {
+  border: 1px solid $color-blue-2;
+  display: inline-block;
+  margin: 5px 5px 5px 0;
+  border-radius: 5px;
+}
+
+.ReactTags__selected a.ReactTags__remove {
+  color: $color-danger;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+/* Styles for suggestions */
+.ReactTags__suggestions {
+  position: absolute;
+}
+
+.ReactTags__suggestions ul {
+  list-style-type: none;
+  box-shadow: 0.05em 0.01em 0.5em rgba(0, 0, 0, 0.2);
+  background: $color-white;
+  width: 200px;
+}
+
+.ReactTags__suggestions li {
+  border-bottom: 1px solid #ddd;
+  padding: 5px 10px;
+  margin: 0;
+}
+
+.ReactTags__suggestions li mark {
+  text-decoration: underline;
+  background: none;
+  font-weight: 600;
+}
+
+.ReactTags__suggestions ul li.ReactTags__activeSuggestion {
+  background: #b7cfe0;
+  cursor: pointer;
+}
+
+.ReactTags__remove {
+  border: none;
+  cursor: pointer;
+  background: none;
+  margin-left: 5px;
+  color: $color-dark-grey;
+}
+
+@media only screen and (min-width: 961px) {
+  .certificate-page {
+    @extend %shadow-box;
+    width: 900px;
+  }
+}

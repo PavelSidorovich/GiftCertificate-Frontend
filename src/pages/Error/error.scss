@@ -1,0 +1,16 @@
+@import "../../common";
+@import "../../globals";
+
+.error-page {
+  @extend %page;
+  @extend %page__element;
+}
+
+.error-page__status {
+  font-size: 80px;
+}
+
+.error-page__text {
+  font-size: 40px;
+  margin-bottom: 10px;
+}

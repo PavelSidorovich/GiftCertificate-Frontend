@@ -1,0 +1,164 @@
+@import "../../globals";
+@import "../../common";
+
+.header {
+  color: $color-white;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  background: linear-gradient(to right, $color-blue-2 0, $color-blue-3 120%)
+    no-repeat;
+}
+
+.navbar-pc {
+  display: flex;
+}
+
+.navbar-mobile {
+  display: flex;
+  padding: 0 16px;
+  justify-content: space-around;
+}
+
+.nav-element {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar__logo {
+  font-size: 25px;
+  color: $color-white;
+}
+
+.navbar__logo:hover {
+  color: unset;
+}
+
+.navbar__menu {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: $color-white;
+}
+
+.navbar__icon--link {
+  display: block;
+  padding: 7px 0;
+  text-align: center;
+}
+
+@mixin navbar__icon($image) {
+  @include icon($image, 36px, $filter-light-grey);
+  margin: 0 auto;
+}
+
+.icon__text {
+  display: none;
+}
+
+.navbar__icon--active {
+  filter: $filter-blue;
+}
+
+.navbar__icon--home {
+  @include navbar__icon(url("../../assets/images/home_24dp.svg"));
+}
+
+.navbar__icon--cart {
+  @include navbar__icon(url("../../assets/images/shopping_cart_24dp.svg"));
+}
+
+.navbar__icon--tag {
+  @include navbar__icon(url("../../assets/images/tag_24dp.svg"));
+}
+
+.navbar__icon--add {
+  @include navbar__icon(url("../../assets/images/plus_24dp.svg"));
+}
+
+.navbar__icon--users {
+  @include navbar__icon(url("../../assets/images/users_24dp.svg"));
+}
+
+.navbar__icon--account {
+  @include navbar__icon(url("../../assets/images/account_24dp.svg"));
+}
+
+.navbar__icon--menu {
+  @include navbar__icon(url("../../assets/images/menu_24dp.svg"));
+  margin: unset;
+  filter: $filter-white;
+}
+
+.navbar__icon--search {
+  @include navbar__icon(url("../../assets/images/search_24dp.svg"));
+  filter: $filter-white;
+}
+
+.active > span {
+  filter: $filter-blue;
+}
+
+@media only screen and (min-width: 961px) {
+  .header {
+    padding: 10px 30px 35px 30px;
+  }
+
+  .header::after {
+    content: "";
+    display: block;
+    height: 24px;
+    width: 100%;
+    border-radius: 24px 24px 0 0;
+    background-color: $color-white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  .navbar__menu {
+    position: static;
+    width: unset;
+    z-index: unset;
+    background-color: unset;
+  }
+
+  .navbar__icon--menu {
+    margin-right: 20px;
+  }
+
+  .nav-element {
+    width: unset;
+    justify-content: unset;
+  }
+
+  .navbar__item {
+    margin-right: 36px;
+  }
+
+  .navbar__item:last-of-type {
+    margin-right: 0;
+  }
+
+  .navbar__icon {
+    filter: $filter-white;
+  }
+
+  .icon__text {
+    display: inline;
+  }
+
+  .navbar__icon--link {
+    color: $color-blue-1;
+  }
+
+  .navbar__icon--link:hover {
+    color: $color-white;
+  }
+}

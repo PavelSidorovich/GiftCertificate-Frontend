@@ -1,0 +1,56 @@
+@import "../../common";
+@import "../../globals";
+
+.orders-page {
+  @extend %page;
+  @extend %page__element;
+}
+
+.orders-page__header-tabs {
+  @extend %page__header-tabs;
+  padding: unset;
+  margin-bottom: 16px;
+}
+
+.orders-page__header {
+  @extend %page__header;
+}
+
+.orders__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-preview {
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  color: unset;
+  margin-bottom: 16px;
+}
+
+.order-preview:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.order-preview:hover .order-preview__title {
+  color: $color-blue-3;
+}
+
+.order-preview__title {
+  color: $color-blue-2;
+}
+
+@media only screen and (min-width: 961px) {
+  .order-preview {
+    width: 30%;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+  }
+
+  .orders__container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+}
